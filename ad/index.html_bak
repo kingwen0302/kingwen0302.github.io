@@ -1,0 +1,22 @@
+---
+title: 购物
+date: 2016-04-22 13:55:09
+layout: ad
+comments: false
+---
+
+<style type="text/css">
+.container div{ width: 300px; margin: 5px; border-style: solid; border-width: 0px; float: left; word-break:break-all; }
+.container img{ width: 300px; height: auto; }
+.container p{ width: 300px; text-align: center; margin: 0px; font-size: 20px; font-style: italic; }
+.container span{display:block; text-align:center; font-size:2em;background-color:#fcf;}
+</style>
+<div class="container">
+<div>
+    <a target="_blank" href="https://item.taobao.com/item.htm?id=529495434637"><img src="https://gd4.alicdn.com/bao/uploaded/i4/TB1r.e5LVXXXXXDXpXXXXXXXXXX_!!0-item_pic.jpg" alt="选购"></a>
+</div>
+<div>
+    <a target="_blank" href="https://item.taobao.com/item.htm?id=529495434637"><img src="https://gd4.alicdn.com/bao/uploaded/i4/TB1r.e5LVXXXXXDXpXXXXXXXXXX_!!0-item_pic.jpg" alt="选购"></a>
+</div>
+</div>
+

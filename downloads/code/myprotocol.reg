@@ -1,0 +1,16 @@
+﻿Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\myprotocol]
+@="ZM Protocol"
+"URL Protocol"="E:\\test.bat %1"
+
+[HKEY_CLASSES_ROOT\myprotocol\DefaultIcon]
+@="C:\\Windows\\notepad.exe"
+
+[HKEY_CLASSES_ROOT\myprotocol\shell]
+
+[HKEY_CLASSES_ROOT\myprotocol\shell\open]
+
+[HKEY_CLASSES_ROOT\myprotocol\shell\open\command]
+@="E:\\test.bat %1"
+

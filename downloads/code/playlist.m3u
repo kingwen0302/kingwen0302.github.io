@@ -1,0 +1,243 @@
+﻿#EXTM3U
+#EXTINF:-1 $ExtFilter="个人列表",CCTV 3-综艺
+http://58.135.196.138:8090/live/A68CE6833D654a9e932A657689463088/index.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",CCTV 6-电影
+http://58.135.196.138:8090/live/6132e9cb136050bd94822db31d1401af/index.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",CCTV 8-电视剧
+http://58.135.196.138:8090/live/6e38d69416f160bad4657788d6c06c01/index.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",CCTV 9-记录
+http://58.135.196.138:8090/live/557a950d2cfcf2ee1aad5a260893c2b8/index.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",CCTV 13-新闻
+http://58.135.196.138:8090/live/5e02ac2a0829f7ab10d6543fdd211d8e/index.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",河北卫视HD
+http://live01.hebtv.com/channels/hebtv/video_channel_04/m3u8:2000k/live
+#EXTINF:-1 $ExtFilter="个人列表",河北卫视
+http://live01.hebtv.com/channels/hebtv/video_channel_04/m3u8:800k/live
+#EXTINF:-1 $ExtFilter="个人列表",兵团卫视
+http://v.btzx.com.cn:1935/live/weishi.stream/playlist.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",耀才财经台
+http://202.69.67.66:443/webcast/bshdlive-pc/playlist.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",香港卫视
+http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",HKS 香港卫视
+rtmp://live.hkstv.hk.lxdns.com/live/hks
+#EXTINF:-1 $ExtFilter="个人列表",美国中文电视
+http://ec.sinovision.net/video/ts/lv.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",好消息
+http://210.59.248.53/hls-live/livepkgr/_definst_/liveevent/live-ch1-3.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",GOODTV 好消息
+http://210.59.248.53/hls-live/livepkgr/_definst_/liveevent/live-ch1-1.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",GOODTV2 好消息
+http://210.59.248.53/hls-live/livepkgr/_definst_/liveevent/live-ch2-3.m3u8
+#EXTINF:-1 $ExtFilter="个人列表",乐视综艺
+http://live.gslb.letv.com/gslb?stream_id=lb_lszy_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",郭德纲
+http://live.gslb.letv.com/gslb?stream_id=lb_gdg_800&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=3
+#EXTINF:-1 $ExtFilter="个人列表",亲子频道
+http://live.gslb.letv.com/gslb?stream_id=lb_qinzi_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",动漫台
+http://live.gslb.letv.com/gslb?stream_id=lb_comic_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=3
+#EXTINF:-1 $ExtFilter="个人列表",猪猪侠
+http://live.gslb.letv.com/gslb?stream_id=lb_zzx_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",多啦A梦
+http://live.gslb.letv.com/gslb?stream_id=lb_dlam_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",欧美卡通
+http://live.gslb.letv.com/gslb?stream_id=lb_omkt_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",香港电影
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_hkmovie_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",动作电影
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_dzdy_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",喜剧
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_comedy_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",周星驰
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_zxc_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",宁浩
+http://live.gslb.letv.com/gslb?stream_id=lb_ninghao_800&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1008&format=cs1&expect=3
+#EXTINF:-1 $ExtFilter="个人列表",宋丹丹
+http://live.gslb.letv.com/gslb?stream_id=lb_sdd_800&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1008&format=cs1&expect=3
+#EXTINF:-1 $ExtFilter="个人列表",1080播不停
+http://live.gslb.letv.com/gslb?stream_id=lb_1080P_1080p3m&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",电视剧
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_tv_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",自制剧
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_make_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",跟播剧
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_genbo_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",韩剧
+http://live.gslb.letv.com/gslb?tag=live&stream_id=lb_koreatv_720p&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=C1S&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",经典美剧
+http://live.gslb.letv.com/gslb?stream_id=lb_jdmj_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1
+#EXTINF:-1 $ExtFilter="个人列表",热门美剧
+http://live.gslb.letv.com/gslb?stream_id=lb_rmmj_800&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1008&format=cs1&expect=3
+#EXTINF:-1 $ExtFilter="个人列表",亚洲影院
+http://dlhls.cdn.zhanqi.tv/zqlive/2869_tUPFz.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森超视HD
+http://59.120.41.145/sta/ch5168047.m3u8
+#EXTINF:-1 $ExtFilter="港台",JET综合
+http://59.120.41.145/sta/ch5168048.m3u8
+#EXTINF:-1 $ExtFilter="港台",三立台湾台HD
+http://59.120.41.145/sta/ch5168049.m3u8
+#EXTINF:-1 $ExtFilter="港台",三立都會台
+http://bcoveliveios-i.akamaihd.net/hls/live/226707/4338955585001/master.m3u8
+#EXTINF:-1 $ExtFilter="港台",TVBS-HD
+http://59.120.41.145/sta/ch5168509.m3u8
+#EXTINF:-1 $ExtFilter="港台",非凡新闻HD
+http://59.120.41.145/sta/ch5168031.m3u8
+#EXTINF:-1 $ExtFilter="港台",TVBS新闻台
+http://59.120.41.145/sta/ch5168510.m3u8
+#EXTINF:-1 $ExtFilter="港台",TVBS新聞台NET
+http://bcoveliveios-i.akamaihd.net/hls/live/249639/4862438529001_5/master.m3u8
+#EXTINF:-1 $ExtFilter="港台",TVB8
+http://59.120.41.145/sta/ch5168511.m3u8
+#EXTINF:-1 $ExtFilter="港台",TVBS歡樂台HD
+http://bcoveliveios-i.akamaihd.net/hls/live/249639/4862438529001_4/master.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森新闻HD
+http://59.120.41.145/sta/ch5168512.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森财经新闻HD
+http://59.120.41.145/sta/ch5168513.m3u8
+#EXTINF:-1 $ExtFilter="港台",中天亚洲台
+http://59.120.41.145/sta/ch5168514.m3u8
+#EXTINF:-1 $ExtFilter="港台",MOMO亲子台
+http://59.120.41.145/sta/ch5168006.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森幼幼台
+http://59.120.41.145/sta/ch5168017.m3u8
+#EXTINF:-1 $ExtFilter="港台",八大戏剧HD
+http://59.120.41.145/sta/ch5168009.m3u8
+#EXTINF:-1 $ExtFilter="港台",八大综合HD
+http://59.120.41.145/sta/ch5168010.m3u8
+#EXTINF:-1 $ExtFilter="港台",八大第1台HD
+http://59.120.41.145/sta/ch5168011.m3u8
+#EXTINF:-1 $ExtFilter="港台",中天娱乐
+http://59.120.41.145/sta/ch5168013.m3u8
+#EXTINF:-1 $ExtFilter="港台",中天新闻
+http://59.120.41.145/sta/ch5168014.m3u8
+#EXTINF:-1 $ExtFilter="港台",中天综合
+http://59.120.41.145/sta/ch5168015.m3u8
+#EXTINF:-1 $ExtFilter="港台",东风37
+http://59.120.41.145/sta/ch5168016.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森电影
+http://59.120.41.145/sta/ch5168018.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森戏剧
+http://59.120.41.145/sta/ch5168019.m3u8
+#EXTINF:-1 $ExtFilter="港台",东森洋片
+http://59.120.41.145/sta/ch5168020.m3u8
+#EXTINF:-1 $ExtFilter="港台",龙华电影
+http://59.120.41.145/sta/ch5168023.m3u8
+#EXTINF:-1 $ExtFilter="港台",纬来电影
+http://59.120.41.145/sta/ch5168025.m3u8
+#EXTINF:-1 $ExtFilter="港台",纬来体育HD
+http://59.120.41.145/sta/ch5168027.m3u8
+#EXTINF:-1 $ExtFilter="港台",探索频道
+http://59.120.41.145/sta/ch5168030.m3u8
+#EXTINF:-1 $ExtFilter="港台",ELTA体育HD
+http://59.120.41.145/sta/ch5168032.m3u8
+#EXTINF:-1 $ExtFilter="港台",卫视中文台HD
+http://59.120.41.145/sta/ch5168037.m3u8
+#EXTINF:-1 $ExtFilter="港台",卫视电影台
+http://59.120.41.145/sta/ch5168038.m3u8
+#EXTINF:-1 $ExtFilter="港台",卫视HD西片
+http://59.120.41.145/sta/ch5168007.m3u8
+#EXTINF:-1 $ExtFilter="港台",Hollywood
+http://59.120.41.145/sta/ch5168040.m3u8
+#EXTINF:-1 $ExtFilter="港台",CinemaWorld
+http://59.120.41.145/sta/ch5168035.m3u8
+#EXTINF:-1 $ExtFilter="港台",星空影院HD
+http://59.120.41.145/sta/ch5168007.m3u8
+#EXTINF:-1 $ExtFilter="港台",HBO-Signature
+http://59.120.41.145/sta/ch5168004.m3u8
+#EXTINF:-1 $ExtFilter="港台",HBO-HD
+http://59.120.41.145/sta/ch5168005.m3u8
+#EXTINF:-1 $ExtFilter="港台",BRAVO菁彩台
+http://59.120.41.145/sta/ch5168505.m3u8
+#EXTINF:-1 $ExtFilter="港台",公视HD
+http://59.120.41.145/sta/ch5168042.m3u8
+#EXTINF:-1 $ExtFilter="港台",台视HD
+http://59.120.41.145/sta/ch5168043.m3u8
+#EXTINF:-1 $ExtFilter="港台",华视HD
+http://59.120.41.145/sta/ch5168046.m3u8
+#EXTINF:-1 $ExtFilter="港台",中视HD
+http://59.120.41.145/sta/ch5168506.m3u8
+#EXTINF:-1 $ExtFilter="港台",中视经典台
+http://59.120.41.145/sta/ch5168507.m3u8
+#EXTINF:-1 $ExtFilter="港台",中视新闻台
+http://59.120.41.145/sta/ch5168508.m3u8
+#EXTINF:-1 $ExtFilter="港台",台视财经台HD
+http://59.120.41.145/sta/ch5168515.m3u8
+#EXTINF:-1 $ExtFilter="港台",台视新闻台HD
+http://59.120.41.145/sta/ch5168516.m3u8
+#EXTINF:-1 $ExtFilter="港台",华视新闻资讯
+http://59.120.41.145/sta/ch5168519.m3u8
+#EXTINF:-1 $ExtFilter="港台",华视综合娱乐
+http://59.120.41.145/sta/ch5168520.m3u8
+#EXTINF:-1 $ExtFilter="港台",人间卫视
+http://59.120.41.145/sta/ch5168517.m3u8
+#EXTINF:-1 $ExtFilter="港台",大爱HD
+http://59.120.41.145/sta/ch5168012.m3u8
+#EXTINF:-1 $ExtFilter="港台",台湾艺术台
+http://59.120.41.145/sta/ch5168003.m3u8
+#EXTINF:-1 $ExtFilter="港台",台艺2台
+http://59.120.41.145/sta/ch5168522.m3u8
+#EXTINF:-1 $ExtFilter="港台",富立
+http://59.120.41.145/sta/ch5168521.m3u8
+#EXTINF:-1 $ExtFilter="港台",华藏卫视
+http://59.120.41.145/sta/ch5168067.m3u8
+#EXTINF:-1,$ExtFilter="港台",香港电视HKTV
+http://ott-video-lb.hktvmall.com:8088/hktvlive.m3u8?uid=1&vid=1&d=pc&t=12e9a7f66f3a892b396e94d81206eb6c&mxres=1920&net=&udid=83fedc4f-f254-11e4-97ac-0862662c98fc&ts=1430742398985&s=15e72de02a374db21d5952849fdd6a17
+#EXTINF:-1,$ExtFilter="体育",欧洲足球
+http://125.88.92.166:30001/PLTV/88888956/224/3221227657/1.m3u8
+#EXTINF:-1,$ExtFilter="体育",CCTV-5+体育赛事高清
+http://117.144.248.49/cctv5plus.m3u8?authCode=07110409322147352675&amp;stbId=006001FF0018120000060019F0D496A1&amp;Contentid=7680777599813046442&amp;mos=jbjhhzstsl&amp;livemode=1&amp;channel-id=wasusyt
+#EXTINF:-1 $ExtFilter="外语",CNN
+http://59.120.41.145/sta/ch5168036.m3u8
+#EXTINF:-1 $ExtFilter="外语",AXN
+http://59.120.41.145/sta/ch5168034.m3u8
+#EXTINF:-1 $ExtFilter="外语",FOX_HD
+http://59.120.41.145/sta/ch5168001.m3u8
+#EXTINF:-1 $ExtFilter="外语",FOX_3HD
+http://59.120.41.145/sta/ch5168002.m3u8
+#EXTINF:-1 $ExtFilter="外语",国家地理
+http://59.120.41.145/sta/ch5168029.m3u8
+#EXTINF:-1 $ExtFilter="外语",英语辅导
+http://125.88.92.166:30001/PLTV/88888956/224/3221227718/1.m3u8
+#EXTINF:-1,$ExtFilter="外语",CCTV英文
+http://125.88.92.166:30001/PLTV/88888956/224/3221227704/1.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-CCTV-1
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_cctv1/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-CCTV-5
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_cctv5/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-安徽卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_ahws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-北京卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_bjws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-东方卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_dfws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-广东卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_gdws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-黑龙江卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_hljws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-湖北卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_hbws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-湖南卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_hnws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-江苏卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_jsws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-山东卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_sdws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-深圳卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_szws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-天津卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_tjws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数A-浙江卫视
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_zjws/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-北京纪实
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/bjjs/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-求索动物
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_qsdw/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-求索记录
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_qsjl/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-求索科学
+http://112.253.38.62:80/padlive1-cnc.wasu.cn/hd_qspd/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-求索生活
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/hd_qssh/z.m3u8
+#EXTINF:-1,$ExtFilter="华数",华数D-上海纪实
+http://112.253.38.62:80/livehls1-cnc.wasu.cn/shjs/z.m3u8

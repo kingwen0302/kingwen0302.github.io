@@ -1,0 +1,47 @@
+
+; <<>> DiG 9.8.2rc1-RedHat-9.8.2-0.62.rc1.el6 <<>>
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44551
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 15
+
+;; QUESTION SECTION:
+;.				IN	NS
+
+;; ANSWER SECTION:
+.			208928	IN	NS	k.root-servers.net.
+.			208928	IN	NS	m.root-servers.net.
+.			208928	IN	NS	h.root-servers.net.
+.			208928	IN	NS	b.root-servers.net.
+.			208928	IN	NS	e.root-servers.net.
+.			208928	IN	NS	d.root-servers.net.
+.			208928	IN	NS	j.root-servers.net.
+.			208928	IN	NS	i.root-servers.net.
+.			208928	IN	NS	g.root-servers.net.
+.			208928	IN	NS	f.root-servers.net.
+.			208928	IN	NS	c.root-servers.net.
+.			208928	IN	NS	l.root-servers.net.
+.			208928	IN	NS	a.root-servers.net.
+
+;; ADDITIONAL SECTION:
+a.root-servers.net.	297186	IN	A	198.41.0.4
+b.root-servers.net.	577331	IN	A	199.9.14.201
+c.root-servers.net.	516495	IN	A	192.33.4.12
+d.root-servers.net.	239851	IN	A	199.7.91.13
+e.root-servers.net.	595729	IN	A	192.203.230.10
+f.root-servers.net.	105851	IN	A	192.5.5.241
+g.root-servers.net.	489492	IN	A	192.112.36.4
+h.root-servers.net.	518326	IN	A	198.97.190.53
+i.root-servers.net.	515320	IN	A	192.36.148.17
+j.root-servers.net.	514394	IN	A	192.58.128.30
+k.root-servers.net.	510884	IN	A	193.0.14.129
+l.root-servers.net.	582304	IN	A	199.7.83.42
+m.root-servers.net.	111635	IN	A	202.12.27.33
+a.root-servers.net.	385992	IN	AAAA	2001:503:ba3e::2:30
+b.root-servers.net.	579098	IN	AAAA	2001:500:200::b
+
+;; Query time: 3 msec
+;; SERVER: 192.168.100.8#53(192.168.100.8)
+;; WHEN: Wed Jan 15 16:48:59 2020
+;; MSG SIZE  rcvd: 492
+

@@ -1,0 +1,265 @@
+#!/bin/bash
+# ft=bash
+
+SCRIPT_NAME=$0
+
+is_start=false; screenrc=""; pid=""
+
+CONFIG_DIR=$HOME/.config/myscreen
+[ ! -d ${CONFIG_DIR} ] && mkdir -p ${CONFIG_DIR}
+
+LOG_DIR=$HOME/screen_log
+[ ! -d ${LOG_DIR} ] && mkdir -p ${LOG_DIR}
+
+[[ "$EDITOR" == "" ]] && EDITOR=vim
+
+RED_FG="31m"; GREEN_FG="32m"; YELLOW_FG="33m"; BLUE_FG="36m"
+RED_BG="41m"; GREEN_BG="42m"; YELLOW_BG="43m"; BLUE_BG="46m"
+
+function print_info(){
+    echo -e "\033[${GREEN_FG}${@:1}\033[0m"
+}
+
+function print_info_yellow() {
+    echo -e "\033[${YELLOW_FG}${@:1}\033[0m"
+}
+
+function print_error(){
+    echo -e "\033[${RED_FG}[ERROR]\033[0m ${@:1}"
+}
+
+function print_ask(){
+    echo -n -e "\033[${YELLOW_FG}${@:1}\033[0m"
+}
+
+function is_started() {
+    session=$1
+    [ "$(screen -ls | grep -w ${session})" != "" ]
+}
+
+function get_screenrc() {
+    session=$1
+    cfg_path=${CONFIG_DIR}/${session}
+    if [ -e ${cfg_path} ]; then
+        screenrc=${cfg_path}
+    else
+        print_error "not found ${session} config"
+        exit
+    fi
+}
+
+function get_pid() {
+    session=$1
+    pid=$(screen -ls | grep -w ${session} | awk '{print $1}' | awk -F. '{print $1}')
+    if [ "${pid}" == "" ]; then
+        print_error "not found pid"
+        exit 
+    fi
+}
+
+function start() {
+    session=$1
+    if $(is_started ${USER}_${session}); then
+        screen -dr ${USER}_${session}
+    else
+        get_screenrc ${session}
+        screen -c $screenrc -dmS ${USER}_${session} 
+        screen -r ${USER}_${session}
+    fi
+}
+
+function get_status() {
+    session=$1
+    get_screenrc ${session}
+    if $(is_started ${USER}_${session}); then
+        print_info "${session} started."
+    else 
+        print_error "${session} not start."
+    fi
+}
+
+function new() {
+    cfg_path=${CONFIG_DIR}/$1
+    mkdir -p $(dirname ${cfg_path})
+    [ -e ${cfg_path} ] && print_error "exist $1" && exit
+    cat > ${cfg_path} << EOF
+# ft=screenrc
+
+source /etc/screenrc
+
+deflog on
+logfile \$HOME/screen_log/screen_%S_%t_%n_%Y%m%d_%c:%s.log
+
+hardstatus alwayslastline
+# hardstatus string "%{.bW}%-w%{.rY}%n %t%{-}%+w %=%{..G} %c:%s "
+# hardstatus string '%{= kG}[ %{G}%H %{g} %{=b d2}%l %{=b dy}%u %{=b dy}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %y/%m/%d %{W}%c:%s %{g}]'
+hardstatus string '%{bR}SCREEN%{= kG} [ %{G}%H %{=b d2}%l %{g}][%= %{= kw}%?%-Lw%?%{r}[%{R}%n*%f%t%?(%u)%?%{r}]%{w}%?%+Lw%?%?%= %{g}][%{B} %Y/%m/%d %{W}%c:%s %{g}]'
+
+# caption always "%{bG}[%n*%f%t%?(%u)%?]%{=b dg}"
+caption always "%{bG}[%n*%f%t%?(%u)%?]%{kd}"
+# caption always "[ %Y/%m/%d %c:%s ] %{=b dy}{ %{= dg}\${USER}@%{= dr}%H %{=b dy}} %{=b d2}%l %{=b dy}%u %{=b dy} %={ %?%{= dc}%-Lw%?%{+b dy}(%{-b r}%n:%t%{+b dy})%?(%u)%?%{-dc}%?%{= dc}%+Lw%? %{=b dy}}"
+
+startup_message off
+vbell off
+defscrollback 10000
+
+bind ' ' title
+
+shell -\$SHELL
+
+## 启动就开启的窗口
+## screen -t title number cmd
+## ex.
+## screen -t python 1 python
+## screen -t pwd 1 bash -c "echo abc > /mnt/f/ffff"
+
+screen -t bash 0
+
+EOF
+}
+
+function list() {
+    cfg_path=${CONFIG_DIR}
+    print_info "==>sessions:"
+    for session in $(ls ${cfg_path}); do
+        if (is_started ${USER}_${session}); then
+            echo -e "\033[${GREEN_FG}[started]\033[0m ${session}"
+        else
+            echo -e "\033[${RED_FG}[nostart]\033[0m ${session}"
+        fi
+    done
+}
+
+function help() {
+    print_info ""
+    print_info_yellow ">>>>> COMMAND <<<<<"
+    print_info "new session      # create new session    "
+    print_info "ls               # list all session      "
+    print_info "edit session     # edit session config   "
+    print_info "rm session       # remove session config "
+    print_info "start session    # start session         "
+    print_info "stop session     # stop session          "
+    print_info "status session   # status session        "
+    print_info "install binname  # install screentool    "
+    print_info "exec session cmd # exec \"cmd\"(use quotes)  "
+    print_info "  cmd:"
+    print_info "    1. a command(ex. python)"
+    print_info "    2. -t python 10 python"
+    print_info ""
+    print_info_yellow ">>>>> KEYBINDINGS <<<<<"
+    print_info "+---------------+---------------------+ "
+    print_info "| ctrl-a d      | detach              | "
+    print_info "| ctrl-a c      | 创建 window         | "
+    print_info "| ctrl-a k      | 关闭 window         | "
+    print_info "| ctrl-a A      | 重命名 windows      | "
+    print_info "| ctrl-a w      | 显示所有窗口        | "
+    print_info "|---------------+---------------------| "
+    print_info "| ctrl-a 0~9    | 切换窗口            | "
+    print_info "| ctrl-a ctrl-a | 快速切换窗口        | "
+    print_info "| ctrl-a Tab    | 切换到另一个(分屏)  | "
+    print_info "| ctrl-a p      | prev window         | "
+    print_info "| ctrl-a n      | next window         | "
+    print_info "|---------------+---------------------| "
+    print_info "| ctrl-a S      | 水平分屏            | "
+    print_info "| ctrl-a |      | 垂直分屏            | "
+    print_info "| ctrl-a Q      | 去除分屏            | "
+    print_info "|---------------+---------------------| "
+    print_info "| ctrl-a [      | copy                | "
+    print_info "|               | 空格是开始/结束选择 | "
+    print_info "| ctrl-a ]      | paste               | "
+    print_info "+---------------+---------------------+ "
+}
+
+function stop() {
+    session=$1
+    if $(is_started ${USER}_${session}); then
+        get_pid ${USER}_${session}
+        kill ${pid}
+    fi
+}
+
+function edit() {
+    session=$1
+    cfg_path=${CONFIG_DIR}/${session}
+    if [ -e ${cfg_path} ]; then
+        $EDITOR ${cfg_path}
+    else
+        print_error "not found ${session}"
+        exit
+    fi
+}
+
+function remove() {
+    session=$1
+    cfg_path=${CONFIG_DIR}/${session}
+    if [ -e ${cfg_path} ]; then
+        if $(is_started ${USER}_${session}); then
+            print_error "${session} started"
+            exit
+        else
+            rm ${cfg_path}
+        fi
+    else
+        print_error "not found ${session}"
+        exit
+    fi
+}
+
+function install() {
+    bin_dir=$HOME/.local/bin
+    mkdir -p ${bin_dir}
+    if [ "$1" == "" ]; then
+        target=${bin_dir}/$(basename ${SCRIPT_NAME})
+    else
+        target=${bin_dir}/$1
+    fi
+
+    cat ${SCRIPT_NAME} | sed -e "s/myscreen/$(basename ${target})/g" > ${target}
+    # cp ${SCRIPT_NAME} ${target} -f
+    chmod u+x ${target}
+    if [ "$(grep 'PATH=$PATH:$HOME/.local/bin' $HOME/.bashrc)" == "" ]; then
+        echo 'export PATH=$PATH:$HOME/.local/bin' >> $HOME/.bashrc
+        source $HOME/.bashrc
+    fi
+    print_info "install succ, use $(basename ${target})"
+}
+
+function exec_cmd() {
+    session=$1
+    if $(! is_started ${USER}_${session}); then
+        print_error "${session} started"
+        exit
+    fi
+    cmd=$2
+    [ "${cmd}" == "" ] && print_error "not found cmd" && exit
+    screen -S ${USER}_${session} -X screen ${cmd}
+}
+
+case $1 in
+    "new") 
+        [ "$2" == "" ] && help && exit
+        new $2;;
+    "ls")
+        list;;
+    "start")
+        [ "$2" == "" ] && help && exit
+        start $2;;
+    "stop")
+        [ "$2" == "" ] && help && exit
+        stop $2;;
+    "status")
+        [ "$2" == "" ] && help && exit
+        get_status $2;;
+    "edit") 
+        [ "$2" == "" ] && help && exit
+        edit $2;;
+    "rm")
+        [ "$2" == "" ] && help && exit
+        remove $2;;
+    "install")
+        install $2;;
+    "exec")
+        exec_cmd $2 "$3";;
+    *)
+        help;;
+esac
