@@ -272,16 +272,13 @@
           <p>个人经常使用的是<code>tmux</code>, 使用<code>tmuxinator</code>管理session</p>
 <p>现在需要接手一些运维工作，但是默认安装的是<code>screen</code>，因此需要一些<code>screen</code>的知识</p>
 <p>用惯了<code>tmuxinator</code>，也想使用类似的工具管理<code>screen</code>的session</p>
-<p>先来个效果图：</p>
-<p><img src="/downloads/assets/screentool.png" alt="效果图"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/04/centos/centos-screentool/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<blockquote>
+<p>其实就是简单的生成不同的<code>screenrc</code>配置，使用<code>screen -c xxx.rc</code>调用不同的配置</p>
+</blockquote>
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">效果图</a></li><li class="tab"><a href="#tab-2">HELP</a></li><li class="tab"><a href="#tab-3">源码</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p><img src="/downloads/assets/screentool.png" alt="效果图"></p></div><div class="tab-pane" id="tab-2"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$ screentool</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;&gt; COMMAND &lt;&lt;&lt;&lt;&lt;</span><br><span class="line">new session      # create new session</span><br><span class="line">ls               # list all session</span><br><span class="line">edit session     # edit session config</span><br><span class="line">rm session       # remove session config</span><br><span class="line">start session    # start session</span><br><span class="line">stop session     # stop session</span><br><span class="line">status session   # status session</span><br><span class="line">install binname  # install screentool</span><br><span class="line">exec session cmd # exec &quot;cmd&quot;(use quotes)</span><br><span class="line">  cmd:</span><br><span class="line">    1. a command(ex. python)</span><br><span class="line">    2. -t python 10 python</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;&gt; KEYBINDINGS &lt;&lt;&lt;&lt;&lt;</span><br><span class="line">+---------------+---------------------+</span><br><span class="line">| ctrl-a d      | detach              |</span><br><span class="line">| ctrl-a c      | 创建 window         |</span><br><span class="line">| ctrl-a k      | 关闭 window         |</span><br><span class="line">| ctrl-a A      | 重命名 windows      |</span><br><span class="line">| ctrl-a w      | 显示所有窗口        |</span><br><span class="line">|---------------+---------------------|</span><br><span class="line">| ctrl-a 0~9    | 切换窗口            |</span><br><span class="line">| ctrl-a ctrl-a | 快速切换窗口        |</span><br><span class="line">| ctrl-a Tab    | 切换到另一个(分屏)  |</span><br><span class="line">| ctrl-a p      | prev window         |</span><br><span class="line">| ctrl-a n      | next window         |</span><br><span class="line">|---------------+---------------------|</span><br><span class="line">| ctrl-a S      | 水平分屏            |</span><br><span class="line">| ctrl-a |      | 垂直分屏            |</span><br><span class="line">| ctrl-a Q      | 去除分屏            |</span><br><span class="line">|---------------+---------------------|</span><br><span class="line">| ctrl-a [      | copy                |</span><br><span class="line">|               | 空格是开始/结束选择 |</span><br><span class="line">| ctrl-a ]      | paste               |</span><br><span class="line">+---------------+---------------------+</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="tab-3"><p>附带<a href="/downloads/code/screentool/myscreen"><code>源码</code></a></p></div></div></div>
+
+
+
       
     </div>
 
@@ -1185,18 +1182,6 @@
 
 
       </div>
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- 纵向广告 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="pub-8880966048781015"
-             data-ad-slot="8862046850"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
 
     </div>
   </aside>
