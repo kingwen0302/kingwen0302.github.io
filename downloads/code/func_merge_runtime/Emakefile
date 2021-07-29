@@ -1,0 +1,18 @@
+{
+	[
+		"src/func_a.erl",
+		"src/func_b.erl"
+	]
+	,[
+		{outdir, "./ebin"}
+	]
+}.
+{
+	[
+		"src/*"
+	]
+	,[
+		debug_info
+		,{outdir, "./ebin"}
+	]
+}.

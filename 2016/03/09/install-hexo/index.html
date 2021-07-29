@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <!-- <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.mingilin.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="准备 blog Git仓库 github page 仓库 centos6.5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo本地环境安装配置">
+<meta property="og:url" content="https://www.mingilin.com/2016/03/09/install-hexo/index.html">
+<meta property="og:site_name" content="情文のBLOG">
+<meta property="og:description" content="准备 blog Git仓库 github page 仓库 centos6.5">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-09T12:00:49.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:26:23.595Z">
+<meta property="article:author" content="kingwen0302">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.mingilin.com/2016/03/09/install-hexo/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>hexo本地环境安装配置 | 情文のBLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74683107-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-74683107-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e340a0928b11036ca5deeaf890942c4b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="情文のBLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">情文のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">记录点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">71</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">112</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2016/03/09/install-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          hexo本地环境安装配置
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-09 20:00:49" itemprop="dateCreated datePublished" datetime="2016-03-09T20:00:49+08:00">2016-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2016/03/09/install-hexo/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/09/install-hexo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li>blog Git仓库</li>
+<li>github page 仓库</li>
+<li>centos6.5</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><ol>
+<li><p>下载如下四个文件；</p>
+</li>
+<li><p> 修改<code>MY_BLOG_GIT_URL</code>, <code>MY_BLOG_THEME</code>, <code>MY_BLOG_THEME_NAME</code></p>
+</li>
+<li><p><code>bash install_hexo.sh 1</code></p>
+<figure class="highlight bash"><figcaption><span>脚本入口</span><a href="/downloads/code/install_hexo.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 博客根目录</span></span><br><span class="line">HEXO_ROOT_DIR=/data/blog</span><br><span class="line"><span class="comment">## 博客源文件目录</span></span><br><span class="line">MY_BLOG_GIT_URL=<span class="string">&quot;git@git.coding.net:kingwen0302/kingwen0302.git&quot;</span></span><br><span class="line"><span class="comment">## 博客主题</span></span><br><span class="line">MY_BLOG_THEME=<span class="string">&quot;https://github.com/tufu9441/maupassant-hexo.git&quot;</span></span><br><span class="line">MY_BLOG_THEME_NAME=maupassant</span><br><span class="line"><span class="comment">## 当前目录</span></span><br><span class="line">CUR_DIR=$(<span class="built_in">cd</span> $(dirname <span class="variable">$0</span>); <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">install_hexo</span></span>(){</span><br><span class="line">    yum remove nodejs npm -y</span><br><span class="line">    curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -</span><br><span class="line">    yum install -y nodejs</span><br><span class="line">    <span class="comment">## npm install -g cnpm --registry=https://registry.npm.taobao.org</span></span><br><span class="line">    <span class="comment">## cnpm install hexo-cli -g</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">install</span></span>(){</span><br><span class="line">    hexo init <span class="variable">${HEXO_ROOT_DIR}</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">${HEXO_ROOT_DIR}</span></span><br><span class="line">    rm -rf <span class="built_in">source</span></span><br><span class="line">    git <span class="built_in">clone</span> <span class="variable">${MY_BLOG_GIT_URL}</span> <span class="built_in">source</span></span><br><span class="line">    rm -rf themes/landscape</span><br><span class="line">    git <span class="built_in">clone</span> <span class="variable">${MY_BLOG_THEME}</span> themes/<span class="variable">${MY_BLOG_THEME_NAME}</span></span><br><span class="line">    <span class="comment">## HEXO配置替换</span></span><br><span class="line">    <span class="built_in">source</span> <span class="variable">${CUR_DIR}</span>/maupassant_config.sh</span><br><span class="line">    <span class="built_in">source</span> <span class="variable">${CUR_DIR}</span>/post.sh</span><br><span class="line">    <span class="comment">## THEME配置替换</span></span><br><span class="line">    <span class="built_in">source</span> <span class="variable">${CUR_DIR}</span>/maupassant_theme_config.sh</span><br><span class="line">    npm install</span><br><span class="line">    <span class="comment">## 安装deploy</span></span><br><span class="line">    npm install hexo-deployer-git --save</span><br><span class="line">    <span class="comment">## rss支持</span></span><br><span class="line">    npm install hexo-generator-feed --save</span><br><span class="line">    <span class="comment">## sitemap支持</span></span><br><span class="line">    npm install hexo-generator-sitemap --save</span><br><span class="line">    npm install hexo-generator-baidu-sitemap --save</span><br><span class="line">    <span class="comment">## jade模版</span></span><br><span class="line">    npm install hexo-renderer-jade --save</span><br><span class="line">    npm install hexo-renderer-sass --save</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">deploy</span></span>(){</span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">${HEXO_ROOT_DIR}</span>/<span class="built_in">source</span></span><br><span class="line">    git add .</span><br><span class="line">    git commit -m <span class="string">&quot;<span class="subst">$(date)</span> deploy&quot;</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">${HEXO_ROOT_DIR}</span></span><br><span class="line">    hexo g -d</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">help</span></span>(){</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot; 0 -- install_hexo&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot; 1 -- install&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot; 2 -- deploy&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;------------------------------&quot;</span></span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">    [0]) install_hexo;;</span><br><span class="line">    [1]) install;;</span><br><span class="line">    [2]) deploy;;</span><br><span class="line">    *)   <span class="built_in">help</span>;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>hexo的配置文件</span><a href="/downloads/code/maupassant_config.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site</span></span><br><span class="line">title: 情文</span><br><span class="line">subtitle: 记录点点滴滴</span><br><span class="line">description: </span><br><span class="line">author: kingwen0302</span><br><span class="line">language: zh-CN</span><br><span class="line">timezone: Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span></span><br><span class="line">url: http://www.mingilin.com</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line">source_dir: <span class="built_in">source</span></span><br><span class="line">public_dir: public</span><br><span class="line">tag_dir: tags</span><br><span class="line">archive_dir: archives</span><br><span class="line">category_dir: categories</span><br><span class="line">code_dir: downloads/code</span><br><span class="line">i18n_dir: :lang</span><br><span class="line">skip_render:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing</span></span><br><span class="line">new_post_name: :title.md <span class="comment"># File name of new posts</span></span><br><span class="line">default_layout: post</span><br><span class="line">titlecase: <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line">external_link: <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line">filename_case: 0</span><br><span class="line">render_drafts: <span class="literal">false</span></span><br><span class="line">post_asset_folder: <span class="literal">false</span></span><br><span class="line">relative_link: <span class="literal">false</span></span><br><span class="line">future: <span class="literal">true</span></span><br><span class="line">highlight:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  line_number: <span class="literal">true</span></span><br><span class="line">  auto_detect: <span class="literal">true</span></span><br><span class="line">  tab_replace:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">tag_map:</span><br><span class="line"></span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">  path: baidusitemap.xml</span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line">date_format: YYYY-MM-DD</span><br><span class="line">time_format: HH:mm:ss</span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line">per_page: 20</span><br><span class="line">pagination_dir: page</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="comment">## theme: landscape</span></span><br><span class="line">theme: maupassant</span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  - <span class="built_in">type</span>: git</span><br><span class="line">    repository: git@git.coding.net:kingwen0302/kingwen0302.git</span><br><span class="line">    branch: coding-pages</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>maupassant主题配置文件</span><a href="/downloads/code/maupassant_theme_config.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">fancybox: <span class="literal">true</span> <span class="comment">## If you want to use fancybox please set the value to true.</span></span><br><span class="line">duoshuo: kingwen0302 <span class="comment">## Your duoshuo_shortname, e.g. username</span></span><br><span class="line">disqus: <span class="comment">## Your disqus_shortname, e.g. username</span></span><br><span class="line">google_search: <span class="literal">true</span> <span class="comment">## Use Google search, true/false.</span></span><br><span class="line">baidu_search: <span class="comment">## Use Baidu search, true/false.</span></span><br><span class="line">swiftype: <span class="comment">## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT</span></span><br><span class="line">tinysou: <span class="comment">## Your tinysou_key, e.g. 4ac092ad8d749fdc6293</span></span><br><span class="line">self_search: <span class="comment">## Use a jQuery-based local search engine, true/false.</span></span><br><span class="line">google_analytics: UA-74683107-1 <span class="comment">## Your Google Analytics tracking id, e.g. UA-42425684-2</span></span><br><span class="line">baidu_analytics: e340a0928b11036ca5deeaf890942c4b <span class="comment">## Your Baidu Analytics tracking id, e.g. 8006843039519956000</span></span><br><span class="line">shareto: <span class="literal">true</span> <span class="comment">## If you want to use the share button please set the value to true.</span></span><br><span class="line">busuanzi: <span class="literal">true</span> <span class="comment">## If you want to use Busuanzi page views please set the value to true.</span></span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  - page: home</span><br><span class="line">    directory: .</span><br><span class="line">    icon: fa-home</span><br><span class="line">  - page: archive</span><br><span class="line">    directory: archives/</span><br><span class="line">    icon: fa-archive</span><br><span class="line">  - page: about</span><br><span class="line">    directory: about/</span><br><span class="line">    icon: fa-user</span><br><span class="line">  - page: rss</span><br><span class="line">    directory: atom.xml</span><br><span class="line">    icon: fa-rss</span><br><span class="line"></span><br><span class="line">widgets: <span class="comment">## Six widgets in sidebar provided: search, category, tag, recent_posts, rencent_comments and links.</span></span><br><span class="line">  - search</span><br><span class="line">  - category</span><br><span class="line">  - tag</span><br><span class="line">  - recent_posts</span><br><span class="line">  - recent_comments</span><br><span class="line">  - links</span><br><span class="line"></span><br><span class="line">links:</span><br><span class="line">  - title: hexo</span><br><span class="line">    url: https://hexo.io/</span><br><span class="line">  - title: 屠夫9441的博客</span><br><span class="line">    url: https://www.haomwei.com/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Static files</span></span><br><span class="line">js: js</span><br><span class="line">css: css</span><br><span class="line"></span><br><span class="line"><span class="comment"># Theme version</span></span><br><span class="line">version: 0.0.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>post.sh</span><a href="/downloads/code/post.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: {{ title }}</span><br><span class="line">date: {{ date }}</span><br><span class="line">tags:</span><br><span class="line">toc: <span class="literal">true</span></span><br><span class="line">categories: </span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="主动推送百度"><a href="#主动推送百度" class="headerlink" title="主动推送百度"></a>主动推送百度</h3><ol>
+<li><p>插件安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install python-setuptools</span><br><span class="line">easy_install beautifulsoup4</span><br><span class="line">easy_install requests</span><br><span class="line">yum -y install python-lxml</span><br></pre></td></tr></table></figure></li>
+<li><p>推送脚本</p>
+<figure class="highlight python"><figcaption><span>push.py</span><a href="/downloads/code/push.py">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author: LoveNight</span></span><br><span class="line"><span class="comment"># @Date:   2015-11-16 20:45:59</span></span><br><span class="line"><span class="comment"># @Last Modified by:   LoveNight</span></span><br><span class="line"><span class="comment"># @Last Modified time: 2015-11-18 18:07:19</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="keyword">as</span> BS</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">hexo 博客专用，向百度站长平台提交所有网址</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">本脚本必须放在hexo博客的根目录下执行！需要已安装生成百度站点地图的插件。</span></span><br><span class="line"><span class="string">百度站长平台提交链接：http://zhanzhang.baidu.com/linksubmit/index</span></span><br><span class="line"><span class="string">主动推送：最为快速的提交方式，推荐您将站点当天新产出链接立即通过此方式推送给百度，以保证新链接可以及时被百度收录。</span></span><br><span class="line"><span class="string">从中找到自己的接口调用地址</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## url = 去上面的链接找自己的推送接口</span></span><br><span class="line">url = <span class="string">&quot;http://data.zz.baidu.com/urls?site=www.aaaa.com&amp;token=aaaa&quot;</span></span><br><span class="line">baidu_sitemap = os.path.join(sys.path[<span class="number">0</span>], <span class="string">&#x27;public&#x27;</span>, <span class="string">&#x27;baidusitemap.xml&#x27;</span>)</span><br><span class="line">google_sitemap = os.path.join(sys.path[<span class="number">0</span>], <span class="string">&#x27;public&#x27;</span>, <span class="string">&#x27;sitemap.xml&#x27;</span>)</span><br><span class="line">sitemap = [baidu_sitemap, google_sitemap]</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> (os.path.exists(baidu_sitemap) <span class="keyword">or</span> os.path.exists(</span><br><span class="line">    google_sitemap)), <span class="string">&quot;没找到任何网站地图，请检查！&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从站点地图中读取网址列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getUrls</span>():</span></span><br><span class="line">    urls = []</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> sitemap:</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(_):</span><br><span class="line">            <span class="comment"># with open(_, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:</span></span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(_, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                xml = f.read()</span><br><span class="line">            soup = BS(xml, <span class="string">&quot;xml&quot;</span>)</span><br><span class="line">            tags = soup.find_all(<span class="string">&quot;loc&quot;</span>)</span><br><span class="line">            urls += [x.string <span class="keyword">for</span> x <span class="keyword">in</span> tags]</span><br><span class="line">            <span class="keyword">if</span> _ == baidu_sitemap:</span><br><span class="line">                tags = soup.find_all(<span class="string">&quot;breadCrumb&quot;</span>, url=<span class="literal">True</span>)</span><br><span class="line">                urls += [x[<span class="string">&quot;url&quot;</span>] <span class="keyword">for</span> x <span class="keyword">in</span> tags]</span><br><span class="line">    <span class="keyword">return</span> urls</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># POST提交网址列表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postUrls</span>(<span class="params">urls</span>):</span></span><br><span class="line">    urls = <span class="built_in">set</span>(urls)  <span class="comment"># 先去重</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;一共提取出 %s 个网址&quot;</span> % <span class="built_in">len</span>(urls))</span><br><span class="line">    data = <span class="string">&quot;\n&quot;</span>.join(urls)</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> urls:</span><br><span class="line">        <span class="built_in">print</span> u</span><br><span class="line">    <span class="keyword">return</span> requests.post(url, data=data).text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"></span><br><span class="line">    urls = getUrls()</span><br><span class="line">    result = postUrls(urls)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;提交结果：&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    <span class="comment">## msvcrt.getch()</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
+<li><a target="_blank" rel="noopener" href="http://lovenight.github.io/2015/11/18/%E5%90%91%E7%99%BE%E5%BA%A6%E6%8E%A8%E9%80%81hexo%E5%8D%9A%E5%AE%A2%E6%89%80%E6%9C%89%E9%93%BE%E6%8E%A5%E7%9A%84Python%E8%84%9A%E6%9C%AC/">参考文档1</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2016/03/10/centos/install-centos/" rel="next" title="CENTOS安装">
+      CENTOS安装 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81%E7%99%BE%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">主动推送百度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kingwen0302"
+      src="/downloads/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">kingwen0302</p>
+  <div class="site-description" itemprop="description">情文，记录点点滴滴，好记性不如个烂笔头</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:kingwen0302@msn.com" title="E-Mail → mailto:kingwen0302@msn.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/kingwen0302" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;kingwen0302" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kingwen0302</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'pe6FSm3v5gzBpK4Hh';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-mingilin-com.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.mingilin.com/2016/03/09/install-hexo/";
+    this.page.identifier = "2016/03/09/install-hexo/";
+    this.page.title = "hexo本地环境安装配置";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://www-mingilin-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

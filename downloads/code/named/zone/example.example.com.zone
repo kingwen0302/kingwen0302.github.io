@@ -1,0 +1,13 @@
+;; 子域名解析
+;; 只解析该子域名,其他的子域名走其他的渠道
+
+$TTL 1D
+@   IN SOA ns1.example.example.com. ns2.example.example.com. (
+        2007091701  ; Serial 
+        30800  ; Refresh 
+        7200  ; Retry 
+        604800  ; Expire 
+        300 )  ; Minimum 
+    IN  NS  ns1
+ns1 IN  A   192.168.50.100      ; ns1.example.example.com
+@   IN  A   192.168.50.100      ; example.example.com

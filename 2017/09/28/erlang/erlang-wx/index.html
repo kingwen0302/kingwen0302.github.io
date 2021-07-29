@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <!-- <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.mingilin.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="工作中需要启动多个节点, 查看日志时,来回切换比较麻烦erlang有wxWidgets用来开发界面,东拼西凑出一个界面,效果图如下:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="erlang wxWidgets">
+<meta property="og:url" content="https://www.mingilin.com/2017/09/28/erlang/erlang-wx/index.html">
+<meta property="og:site_name" content="情文のBLOG">
+<meta property="og:description" content="工作中需要启动多个节点, 查看日志时,来回切换比较麻烦erlang有wxWidgets用来开发界面,东拼西凑出一个界面,效果图如下:">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mingilin.com/downloads/assets/wx.png">
+<meta property="article:published_time" content="2017-09-28T06:09:47.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:26:23.592Z">
+<meta property="article:author" content="kingwen0302">
+<meta property="article:tag" content="erlang">
+<meta property="article:tag" content="wxWidgets">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mingilin.com/downloads/assets/wx.png">
+
+<link rel="canonical" href="https://www.mingilin.com/2017/09/28/erlang/erlang-wx/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>erlang wxWidgets | 情文のBLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74683107-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-74683107-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e340a0928b11036ca5deeaf890942c4b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="情文のBLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">情文のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">记录点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">71</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">112</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2017/09/28/erlang/erlang-wx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          erlang wxWidgets
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-28 14:09:47" itemprop="dateCreated datePublished" datetime="2017-09-28T14:09:47+08:00">2017-09-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/erlang/" itemprop="url" rel="index"><span itemprop="name">erlang</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/erlang/wxWidgets/" itemprop="url" rel="index"><span itemprop="name">wxWidgets</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/09/28/erlang/erlang-wx/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/28/erlang/erlang-wx/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>工作中需要启动多个节点, 查看日志时,来回切换比较麻烦<br>erlang有wxWidgets用来开发界面,东拼西凑出一个界面,效果图如下:<br><img src="/downloads/assets/wx.png" alt="效果图如下"></p>
+<span id="more"></span>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight erl"><figcaption><span>server_ctl_gui.erl</span><a href="/downloads/code/server_ctl_gui.erl">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% coding: latin-1</span></span><br><span class="line"><span class="comment">%%! -smp enable -name server_ctl_gui@127.0.0.1 -setcookie qqjy -noshell</span></span><br><span class="line"><span class="comment">%%%-----------------------------------------------</span></span><br><span class="line"><span class="comment">%%% 一个界面管理所有节点信息</span></span><br><span class="line"><span class="comment">%%%</span></span><br><span class="line"><span class="comment">%%% escript server_ctl_gui.erl --log_file E:/qqjy/server_ctl_gui.log --project_root E:/qqjy/qqjy_server/config</span></span><br><span class="line"><span class="comment">%%%</span></span><br><span class="line"><span class="comment">%%% 已知问题:</span></span><br><span class="line"><span class="comment">%%% 1. 在使用`RunHiddenConsole erl` 后, `observer:start()`会失效</span></span><br><span class="line"><span class="comment">%%%</span></span><br><span class="line"><span class="comment">%%%-----------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">-include_lib</span><span class="params">(<span class="string">&quot;wx/include/wx.hrl&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-include_lib</span><span class="params">(<span class="string">&quot;kernel/include/file.hrl&quot;</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(APP_NAME, server_ctl_gui)</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(DEBUG_MSG(Format)</span>, ?DEBUG_MSG<span class="params">(Format, [])</span>).</span><br><span class="line"><span class="comment">%% ?LINE + 1 应该是因为 `-smp ...` 的原因</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(DEBUG_MSG(Format, Args)</span>,</span><br><span class="line">        lists:foldl<span class="params">(</span></span><br><span class="line"><span class="params">          <span class="keyword">fun</span>(IO, Str) <span class="keyword">when</span> is_pid(IO) -&gt;</span></span><br><span class="line"><span class="params">                  io:format(IO, <span class="string">&quot;~s&quot;</span>, [Str]),</span></span><br><span class="line"><span class="params">                  Str;</span></span><br><span class="line"><span class="params">             (wx, Str) -&gt;</span></span><br><span class="line"><span class="params">                  <span class="keyword">case</span> get_env(parent_pid) <span class="keyword">of</span></span></span><br><span class="line"><span class="params">                      undefined -&gt;</span></span><br><span class="line"><span class="params">                          set_env(wx_log_list, get_env(wx_log_list, []) ++ [Str]);</span></span><br><span class="line"><span class="params">                      _ -&gt;</span></span><br><span class="line"><span class="params">                          lists:foreach(</span></span><br><span class="line"><span class="params">                            <span class="keyword">fun</span>(_X_) -&gt; get_env(parent_pid) ! {log_wx, Str} <span class="keyword">end</span>, </span></span><br><span class="line"><span class="params">                            get_env(wx_log_list, []) ++ [Str]),</span></span><br><span class="line"><span class="params">                          set_env(wx_log_list, [])</span></span><br><span class="line"><span class="params">                  <span class="keyword">end</span>,</span></span><br><span class="line"><span class="params">                  Str;</span></span><br><span class="line"><span class="params">             (_, Str) -&gt;</span></span><br><span class="line"><span class="params">                  io:format(<span class="string">&quot;~ts&quot;</span>, [Str]),</span></span><br><span class="line"><span class="params">                  Str</span></span><br><span class="line"><span class="params">          <span class="keyword">end</span>,</span></span><br><span class="line"><span class="params">          unicode:characters_to_binary(io_lib:format(<span class="string">&quot;~s ~p [line:~p] &quot;</span> ++ Format ++ <span class="string">&quot;~n&quot;</span>, [time_format(), self(), ?LINE + <span class="number">1</span> | Args])),</span></span><br><span class="line"><span class="params">          lists:usort([undefined, wx, application:get_env(?APP_NAME, log_pid, undefined)])</span></span><br><span class="line"><span class="params">         )</span>).</span><br><span class="line"></span><br><span class="line"><span class="keyword">-record</span><span class="params">(wx_elem_cfg, {</span></span><br><span class="line"><span class="params">          id = <span class="number">0</span>,</span></span><br><span class="line"><span class="params">          name = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">          type = <span class="number">0</span>, <span class="comment">%% button | text</span></span></span><br><span class="line"><span class="params">          start_cmd_list = [],  <span class="comment">%% 字符串命令 | {call, {M, F, A}}, {mfa, {Fun, Args}}</span></span></span><br><span class="line"><span class="params">          over_cmd_list = [],</span></span><br><span class="line"><span class="params">          node = undefined,</span></span><br><span class="line"><span class="params">          log_file = <span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="params">         })</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-record</span><span class="params">(wx_elem_state, {</span></span><br><span class="line"><span class="params">          id = <span class="number">0</span>,</span></span><br><span class="line"><span class="params">          wx,</span></span><br><span class="line"><span class="params">          status = over, <span class="comment">%% over | start</span></span></span><br><span class="line"><span class="params">          log_pid</span></span><br><span class="line"><span class="params">         })</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-record</span><span class="params">(state, {</span></span><br><span class="line"><span class="params">          frame,</span></span><br><span class="line"><span class="params">          btn_list = [],</span></span><br><span class="line"><span class="params">          text_list = [],</span></span><br><span class="line"><span class="params">          log_wx,</span></span><br><span class="line"><span class="params">          pid</span></span><br><span class="line"><span class="params">         })</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_STR, <span class="string">&quot;【开启】&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(CLOSE_STR, <span class="string">&quot;【关闭】&quot;</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 按钮</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(BUTTON_SIZE_X, <span class="number">100</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(BUTTON_SIZE_Y, <span class="number">30</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 日志框</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(TEXT_SIZE_X, <span class="number">1680</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(TEXT_SIZE_Y, <span class="number">400</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 初始化显示行数</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(SHOW_LINES_INIT, <span class="number">10</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(ERL_HEAD, <span class="string">&quot;RunHiddenConsole D:/erl6.2/bin/erl +P 6400 -smp auto -pa ../ebin -noshell -noinput -setcookie qqjy -boot start_sasl &quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(WERL_HEAD, <span class="string">&quot;start D:/erl6.2/bin/werl +P 6400 -smp auto -pa ../ebin -setcookie qqjy &quot;</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 节点名字</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(NODE_GAME,  &#x27;qqjy_game1@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(NODE_GAME_2,&#x27;qqjy_game2@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(NODE_CROSS, &#x27;qqjy_cross1@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(NODE_MGR,   &#x27;qqjy_mgr1@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(NODE_FLASH, &#x27;qqjy_game_flash1@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 节点启动命令</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_GAME_CMD,     ?ERL_HEAD ++ <span class="string">&quot;-name &quot;</span> ++ atom_to_list(?NODE_GAME)   ++ <span class="string">&quot; -config run_game -s main server_start&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_GAME_2_CMD,   ?ERL_HEAD ++ <span class="string">&quot;-name &quot;</span> ++ atom_to_list(?NODE_GAME_2) ++ <span class="string">&quot; -config run_game2 -s main server_start&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_CROSS_CMD,    ?ERL_HEAD ++ <span class="string">&quot;-name &quot;</span> ++ atom_to_list(?NODE_CROSS)  ++ <span class="string">&quot; -config run_cross -s main server_start&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_MGR_CMD,      ?ERL_HEAD ++ <span class="string">&quot;-name &quot;</span> ++ atom_to_list(?NODE_MGR)    ++ <span class="string">&quot; -config run_mgr -s main server_start&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_FLASH_CMD,    ?ERL_HEAD ++ <span class="string">&quot;-name &quot;</span> ++ atom_to_list(?NODE_FLASH)  ++ <span class="string">&quot; -config flash -s main flash_start&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_MAKE,         ?WERL_HEAD ++ <span class="string">&quot;-eval \&quot;case u:d() of up_to_date -&gt; timer:sleep(5000), init:stop(); _ -&gt; error end\&quot;&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_MAKE_FUNC,    ?WERL_HEAD ++ <span class="string">&quot;-eval \&quot;case u:m([fair_1v1]) of up_to_date -&gt; timer:sleep(60000), init:stop(); _ -&gt; error end\&quot;&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_GAME_DEBUG,   ?WERL_HEAD ++ <span class="string">&quot;-name debug_1@127.0.0.1 -remsh &quot;</span>     ++ atom_to_list(?NODE_GAME))</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_CROSS_DEBUG,  ?WERL_HEAD ++ <span class="string">&quot;-name debug_cross@127.0.0.1 -remsh &quot;</span> ++ atom_to_list(?NODE_CROSS))</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_MGR_DEBUG,    ?WERL_HEAD ++ <span class="string">&quot;-name debug_mgr@127.0.0.1 -remsh &quot;</span>   ++ atom_to_list(?NODE_MGR))</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(START_GUI_DEBUG,    ?WERL_HEAD ++ <span class="string">&quot;-name debug_gui@127.0.0.1 -remsh &quot;</span>   ++ atom_to_list(&#x27;server_ctl_gui@<span class="number">127.0</span>.<span class="number">0.1</span>&#x27;))</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 日志文件</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(FILE_GAME_LOG,  <span class="string">&quot;E:/qqjy/qqjy_server/logs/game_200001/console.txt&quot;</span>)</span>.</span><br><span class="line"><span class="keyword">-define</span><span class="params">(FILE_CROSS_LOG, <span class="string">&quot;E:/qqjy/qqjy_server/logs/cross/console.txt&quot;</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 玩家列表url</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(URL_PLAYER_LIST, <span class="string">&quot;http://127.0.0.1:7010/debug/user_list?is_show_guest=1&amp;last_days=10&amp;client=1&quot;</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 按钮列表, 横向排序</span></span><br><span class="line"><span class="function"><span class="title">wx_btn_list</span><span class="params">()</span> -&gt;</span></span><br><span class="line">    [</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">101</span>, name = <span class="string">&quot;游戏服&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_GAME_CMD],</span><br><span class="line">        over_cmd_list = [{call, {main, shutdown, []}}],</span><br><span class="line">        node = ?NODE_GAME</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">1011</span>, name = <span class="string">&quot;游戏服2&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_GAME_2_CMD],</span><br><span class="line">        over_cmd_list = [{call, {main, shutdown, []}}],</span><br><span class="line">        node = ?NODE_GAME_2</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">102</span>, name = <span class="string">&quot;跨服&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_CROSS_CMD],</span><br><span class="line">        over_cmd_list = [{call, {main, shutdown, []}}],</span><br><span class="line">        node = ?NODE_CROSS</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">103</span>, name = <span class="string">&quot;管理服&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_MGR_CMD],</span><br><span class="line">        over_cmd_list = [{call, {main, shutdown, []}}],</span><br><span class="line">        node = ?NODE_MGR</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">104</span>, name = <span class="string">&quot;FLASH&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_FLASH_CMD],</span><br><span class="line">        over_cmd_list = [{call, {main, flash_stop, []}}],</span><br><span class="line">        node = ?NODE_FLASH</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">105</span>, name = <span class="string">&quot;一键启动所有服&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [</span><br><span class="line">                          ?START_FLASH_CMD,</span><br><span class="line">                          ?START_MGR_CMD,</span><br><span class="line">                          ?START_CROSS_CMD,</span><br><span class="line">                          ?START_GAME_CMD</span><br><span class="line">                         ],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">106</span>, name = <span class="string">&quot;编译&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_MAKE],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">1061</span>, name = <span class="string">&quot;编译功能&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_MAKE_FUNC],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">107</span>, name = <span class="string">&quot;玩家列表&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [{mfa, {<span class="keyword">fun</span> wx_misc:launchDefaultBrowser/<span class="number">1</span>, [?URL_PLAYER_LIST]}}],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">108</span>, name = <span class="string">&quot;DEBUG_GAME&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_GAME_DEBUG],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">109</span>, name = <span class="string">&quot;DEBUG_CROSS&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_CROSS_DEBUG],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">110</span>, name = <span class="string">&quot;DEBUG_MGR&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_MGR_DEBUG],</span><br><span class="line">        node = undefined</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">111</span>, name = <span class="string">&quot;DEBUG_GUI&quot;</span>, type = button,</span><br><span class="line">        start_cmd_list = [?START_GUI_DEBUG],</span><br><span class="line">        node = undefined</span><br><span class="line">       }</span><br><span class="line">    ].</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 日志列表, 纵向排序</span></span><br><span class="line">wx_text_list() -&gt;</span><br><span class="line">    [</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">201</span>, type = text, name = <span class="string">&quot;游戏服日志&quot;</span>,</span><br><span class="line">        log_file = ?FILE_GAME_LOG</span><br><span class="line">       },</span><br><span class="line">     #wx_elem_cfg{</span><br><span class="line">        id = <span class="number">202</span>, type = text, name = <span class="string">&quot;跨服日志&quot;</span>,</span><br><span class="line">        log_file = ?FILE_CROSS_LOG</span><br><span class="line">       }</span><br><span class="line">    ].</span><br><span class="line"></span><br><span class="line">main(Args) -&gt;</span><br><span class="line">    parse_args(Args),</span><br><span class="line">    application:load({application, ?APP_NAME, []}),</span><br><span class="line">    set_env(parent_pid, self()),</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;欢迎使用GUI版, Powered by kingwen0302&quot;</span>),</span><br><span class="line">    <span class="keyword">case</span> get_env(log_file) <span class="keyword">of</span></span><br><span class="line">        undefined -&gt; ?DEBUG_MSG(<span class="string">&quot;缺少log_file配置&quot;</span>);</span><br><span class="line">        LogFile -&gt;</span><br><span class="line">            {ok, IO} = file:open(LogFile, [append]),</span><br><span class="line">            set_env(log_pid, IO)</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    State = make_window(),</span><br><span class="line">    self() ! {chk},</span><br><span class="line">    loop (State).</span><br><span class="line"></span><br><span class="line">make_window() -&gt;</span><br><span class="line">    <span class="keyword">case</span> get_env(project_root) <span class="keyword">of</span></span><br><span class="line">        undefined -&gt; ?DEBUG_MSG(<span class="string">&quot;缺少project_root配置&quot;</span>);</span><br><span class="line">        Dir -&gt; file:set_cwd(Dir)</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    {ok, RootDir} = file:get_cwd(),</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;项目目录: ~s&quot;</span>, [RootDir]),</span><br><span class="line">    Server = wx:new(),</span><br><span class="line">    Frame = wxFrame:new(Server,</span><br><span class="line">                        -<span class="number">1</span>,</span><br><span class="line">                        <span class="string">&quot;QQJY-国服-开发-节点管理 POWERED BY kingwen0302&quot;</span>,</span><br><span class="line">                        [{size,{<span class="number">0</span>, <span class="number">0</span>}}, {style, ?wxDEFAULT_FRAME_STYLE bor ?wxMAXIMIZE}]</span><br><span class="line">                       ),</span><br><span class="line">    Panel = wxScrolledWindow:new(Frame),</span><br><span class="line">    wxPanel:setBackgroundColour(Panel, ?wxLIGHT_GREY),</span><br><span class="line"></span><br><span class="line">    Sz = wxBoxSizer:new(?wxVERTICAL),</span><br><span class="line"></span><br><span class="line">    ButtonSizer = wxStaticBoxSizer:new(?wxHORIZONTAL, Panel, [{label, <span class="string">&quot;命令按钮&quot;</span>}]),</span><br><span class="line"></span><br><span class="line">    StockSz = wxGridSizer:new(<span class="number">0</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">3</span>),</span><br><span class="line"></span><br><span class="line">    BtnList = create_btn_list(Panel, wx_btn_list()),</span><br><span class="line">    SzFlags = [{proportion, <span class="number">0</span>}, {border, <span class="number">4</span>}, {flag, ?wxALL}],</span><br><span class="line">    [wxSizer:add(StockSz, Btn, SzFlags) || #wx_elem_state{wx = Btn} &lt;- BtnList],</span><br><span class="line">    wxSizer:add(ButtonSizer, StockSz, SzFlags),</span><br><span class="line"></span><br><span class="line">    Log = wxTextCtrl:new(Panel, <span class="number">0</span>, [</span><br><span class="line">                                                    {size, {<span class="number">1000</span>, <span class="number">100</span>}},</span><br><span class="line">                                                    {style, ?wxTE_READONLY bor ?wxTE_MULTILINE}</span><br><span class="line">                                                   ]),</span><br><span class="line">    wxSizer:add(ButtonSizer, Log, SzFlags),</span><br><span class="line">    wxSizer:add(Sz, ButtonSizer, SzFlags),</span><br><span class="line"></span><br><span class="line">    TextList = create_text_list(Panel, wx_text_list()),</span><br><span class="line">    Expand  = [{proportion, <span class="number">0</span>}, {border, <span class="number">4</span>}, {flag, ?wxALL bor ?wxEXPAND}],</span><br><span class="line">    Fun = <span class="keyword">fun</span>(#wx_elem_state{id = Id, wx = Text}) -&gt;</span><br><span class="line">                  Name = <span class="keyword">case</span> lists:keyfind(Id, #wx_elem_cfg.id, wx_text_list()) <span class="keyword">of</span></span><br><span class="line">                             #wx_elem_cfg{name = Name1} -&gt; Name1;</span><br><span class="line">                             _ -&gt; <span class="string">&quot;&quot;</span></span><br><span class="line">                         <span class="keyword">end</span>,</span><br><span class="line">                  TextSizer = wxStaticBoxSizer:new(?wxVERTICAL, Panel, [{label, Name}]),</span><br><span class="line">                  wxSizer:add(TextSizer, Text, Expand),</span><br><span class="line">                  {TextSizer, Expand}</span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    [wxSizer:add(Sz, TextSizer, Flag) || {TextSizer, Flag} &lt;- lists:map(Fun, TextList)],</span><br><span class="line"></span><br><span class="line">    wxWindow:setSizer(Panel, Sz),</span><br><span class="line">    wxSizer:layout(Sz),</span><br><span class="line">    wxWindow:refresh(Panel),</span><br><span class="line">    wxScrolledWindow:setScrollRate(Panel, <span class="number">5</span>, <span class="number">5</span>),</span><br><span class="line"></span><br><span class="line">    wxFrame:show(Frame),</span><br><span class="line"></span><br><span class="line">    wxFrame:connect(Frame, close_window),</span><br><span class="line">    wxPanel:connect(Panel, command_button_clicked),</span><br><span class="line"></span><br><span class="line">    #state{frame = Frame, btn_list = BtnList, text_list = TextList, log_wx = Log, pid = self()}.</span><br><span class="line"></span><br><span class="line">loop(State) -&gt;</span><br><span class="line">    <span class="keyword">receive</span></span><br><span class="line">        Msg -&gt;</span><br><span class="line">            <span class="keyword">case</span> <span class="keyword">catch</span> do_loop(Msg, State) <span class="keyword">of</span></span><br><span class="line">                {&#x27;EXIT&#x27;, Reason} -&gt;</span><br><span class="line">                    ?DEBUG_MSG(<span class="string">&quot;Msg:~p Reason:~p&quot;</span>, [Msg, Reason]),</span><br><span class="line">                    loop(State);</span><br><span class="line">                _ -&gt;</span><br><span class="line">                    loop(State)</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 退出界面</span></span><br><span class="line">do_loop(#wx{event=#wxClose{}}, #state{pid = Pid} = State) -&gt;</span><br><span class="line">    <span class="keyword">if</span></span><br><span class="line">        Pid =/= self() -&gt; Pid ! { -<span class="number">1</span> };</span><br><span class="line">        <span class="literal">true</span> -&gt; ok</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;~p Closing window&quot;</span>,[self()]),</span><br><span class="line">    close(State),</span><br><span class="line">    ok;</span><br><span class="line"><span class="comment">%% 退出界面</span></span><br><span class="line">do_loop(#wx{id = ?wxID_EXIT, event=#wxCommand{type = command_button_clicked} }, #state{pid = Pid} = State) -&gt;</span><br><span class="line">    <span class="keyword">if</span></span><br><span class="line">        Pid =/= self() -&gt; Pid ! { -<span class="number">1</span> };</span><br><span class="line">        <span class="literal">true</span> -&gt; ok</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;~p Closing window&quot;</span>,[self()]),</span><br><span class="line">    close(State),</span><br><span class="line">    ok;</span><br><span class="line"><span class="comment">%% 按钮点击</span></span><br><span class="line">do_loop(#wx{id =Id, event=#wxCommand{type = command_button_clicked}}, #state{btn_list = BtnList} = State) -&gt;</span><br><span class="line">    Cfg = lists:keyfind(Id, #wx_elem_cfg.id, wx_btn_list()),</span><br><span class="line">    <span class="keyword">case</span> is_record(Cfg, wx_elem_cfg) <span class="keyword">of</span></span><br><span class="line">        <span class="literal">false</span> -&gt; throw(ok);</span><br><span class="line">        <span class="literal">true</span> -&gt; skip</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    #wx_elem_cfg{start_cmd_list = StartCmdList, over_cmd_list = OverCmdList, node = Node} = Cfg,</span><br><span class="line">    Fun = <span class="keyword">fun</span>(Cmd) <span class="keyword">when</span> is_list(Cmd) -&gt;</span><br><span class="line">                  ?DEBUG_MSG(<span class="string">&quot;字符串命令: ~p&quot;</span>, [Cmd]),</span><br><span class="line">                  spawn(<span class="keyword">fun</span>() -&gt; os:cmd(Cmd) <span class="keyword">end</span>);</span><br><span class="line">             ({call, {M, F, A}}) -&gt;</span><br><span class="line">                  ?DEBUG_MSG(<span class="string">&quot;节点Call: rpc:call(~p, ~p, ~p, ~p)&quot;</span>, [Node, M, F, A]),</span><br><span class="line">                  rpc:call(Node, M, F, A);</span><br><span class="line">             ({mfa, {M, F, A}}) -&gt;</span><br><span class="line">                  ?DEBUG_MSG(<span class="string">&quot;函数调用: ~p:~p Args:~p&quot;</span>, [M, F, A]),</span><br><span class="line">                  apply(M, F, A);</span><br><span class="line">             ({mfa, {F, A}}) -&gt;</span><br><span class="line">                  ?DEBUG_MSG(<span class="string">&quot;函数调用: ~p Args:~p&quot;</span>, [F, A]),</span><br><span class="line">                  apply(F, A)</span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    <span class="keyword">case</span> lists:keyfind(Id, #wx_elem_state.id, BtnList) <span class="keyword">of</span></span><br><span class="line">        #wx_elem_state{status = over} -&gt;</span><br><span class="line">            ?DEBUG_MSG(<span class="string">&quot;开始 ~p&quot;</span>, [Id]),</span><br><span class="line">            lists:foreach(Fun, StartCmdList);</span><br><span class="line">        #wx_elem_state{status = start} -&gt;</span><br><span class="line">            ?DEBUG_MSG(<span class="string">&quot;关闭 ~p&quot;</span>, [Id]),</span><br><span class="line">            lists:foreach(Fun, OverCmdList);</span><br><span class="line">        _ -&gt; skip</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    loop(State);</span><br><span class="line"><span class="comment">%% 定时检查</span></span><br><span class="line">do_loop({chk}, #state{btn_list = BtnList, text_list = TextList, pid = Pid} = State) -&gt;</span><br><span class="line">    Fun = <span class="keyword">fun</span>(#wx_elem_state{id = Id, wx = Text, log_pid = LogPid} = Elem) -&gt;</span><br><span class="line">                  TailEXE = os:find_executable(<span class="string">&quot;tail&quot;</span>),</span><br><span class="line">                  <span class="keyword">case</span> lists:keyfind(Id, #wx_elem_cfg.id, wx_text_list()) <span class="keyword">of</span></span><br><span class="line">                      #wx_elem_cfg{log_file = LogFile} <span class="keyword">when</span> TailEXE =:= <span class="literal">false</span> -&gt;</span><br><span class="line">                          read_line(Id, Text, LogFile),</span><br><span class="line">                          Elem;</span><br><span class="line">                      #wx_elem_cfg{log_file = LogFile} <span class="keyword">when</span> LogPid =:= undefined -&gt;</span><br><span class="line">                          NewLogPid = spawn_link(<span class="keyword">fun</span>() -&gt; read_line_by_tail(Pid, TailEXE, Id, LogFile) <span class="keyword">end</span>),</span><br><span class="line">                          Elem#wx_elem_state{log_pid = NewLogPid};</span><br><span class="line">                      _ -&gt; Elem</span><br><span class="line">                  <span class="keyword">end</span></span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    NewTextList = lists:map(Fun, TextList),</span><br><span class="line"></span><br><span class="line">    Fun1 = <span class="keyword">fun</span>(#wx_elem_state{id = Id, wx = Btn} = Elem) -&gt;</span><br><span class="line">                   <span class="keyword">case</span> lists:keyfind(Id, #wx_elem_cfg.id, wx_btn_list()) <span class="keyword">of</span></span><br><span class="line">                       #wx_elem_cfg{name = Name, node = Node} <span class="keyword">when</span> Node =/= undefined -&gt;</span><br><span class="line">                           <span class="keyword">case</span> net_adm:ping(Node) <span class="keyword">of</span></span><br><span class="line">                               pong -&gt;</span><br><span class="line">                                   wxButton:setLabel(Btn, ?CLOSE_STR ++ Name),</span><br><span class="line">                                   Elem#wx_elem_state{status = start};</span><br><span class="line">                               _ -&gt;</span><br><span class="line">                                   wxButton:setLabel(Btn, ?START_STR ++ Name),</span><br><span class="line">                                   Elem#wx_elem_state{status = over}</span><br><span class="line">                           <span class="keyword">end</span>;</span><br><span class="line">                       _ -&gt; Elem</span><br><span class="line">                   <span class="keyword">end</span></span><br><span class="line">           <span class="keyword">end</span>,</span><br><span class="line">    NewBtnList = lists:map(Fun1, BtnList),</span><br><span class="line">    NewState = State#state{btn_list = NewBtnList, text_list = NewTextList},</span><br><span class="line">    <span class="comment">%% 执行完成后在开启下次定时器</span></span><br><span class="line">    erlang:send_after(<span class="number">2000</span>, self(), {chk}),</span><br><span class="line">    loop(NewState);</span><br><span class="line"><span class="comment">%% 使用port的日志输出</span></span><br><span class="line">do_loop({log, Id, Data}, #state{text_list = TextList} = State) -&gt;</span><br><span class="line">    <span class="keyword">case</span> lists:keyfind(Id, #wx_elem_state.id, TextList) <span class="keyword">of</span></span><br><span class="line">        #wx_elem_state{wx = Text} -&gt;</span><br><span class="line">            wxTextCtrl:appendText(Text, Data ++ <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        _ -&gt;</span><br><span class="line">            ?DEBUG_MSG(<span class="string">&quot;Log: Id:~p&quot;</span>, [Id])</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    loop(State);</span><br><span class="line">do_loop({log_wx, Str}, #state{log_wx = Text} = State) -&gt;</span><br><span class="line">    wxTextCtrl:appendText(Text, Str),</span><br><span class="line">    loop(State);</span><br><span class="line">do_loop(Msg, State) -&gt;</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;not match:~p&quot;</span>, [Msg]),</span><br><span class="line">    loop(State).</span><br><span class="line"></span><br><span class="line">read_line_by_tail(Pid, TailEXE, Id, LogFile) -&gt;</span><br><span class="line">    process_flag(trap_exit, true),</span><br><span class="line">    PortOptions = [</span><br><span class="line">                   exit_status,</span><br><span class="line">                   {line, <span class="number">1024</span>},</span><br><span class="line">                   {args, [<span class="string">&quot;-F&quot;</span>, LogFile]},</span><br><span class="line">                   in</span><br><span class="line">                  ],</span><br><span class="line">    Port = erlang:open_port({spawn_executable, TailEXE}, PortOptions),</span><br><span class="line">    read_line_by_tail_loop(Pid, Id, Port).</span><br><span class="line">read_line_by_tail_loop(Pid, Id, Port) -&gt;</span><br><span class="line">    <span class="keyword">receive</span></span><br><span class="line">        {Port, {data, {eol, Data}}} -&gt;</span><br><span class="line">            Pid ! {log, Id, Data},</span><br><span class="line">            read_line_by_tail_loop(Pid, Id, Port);</span><br><span class="line">        {Port, {data, {noeol, Data}}} -&gt;</span><br><span class="line">            Pid ! {log, Id, Data},</span><br><span class="line">            read_line_by_tail_loop(Pid, Id, Port);</span><br><span class="line">        {close} -&gt;</span><br><span class="line">            <span class="comment">%% 结束端口开的系统进程</span></span><br><span class="line">            PortInfo = erlang:port_info(Port),</span><br><span class="line">            erlang:port_close(Port),</span><br><span class="line">            <span class="keyword">case</span> proplists:get_value(os_pid, PortInfo) <span class="keyword">of</span></span><br><span class="line">                undefined -&gt; skip;</span><br><span class="line">                OsPid -&gt; kill_by_os(OsPid)</span><br><span class="line">            <span class="keyword">end</span>,</span><br><span class="line">            ok;</span><br><span class="line">        Any -&gt;</span><br><span class="line">            ?DEBUG_MSG(<span class="string">&quot;Any:~p&quot;</span>, [Any]),</span><br><span class="line">            read_line_by_tail_loop(Pid, Id, Port)</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 自己实现的输出</span></span><br><span class="line"><span class="comment">%% 在没有tail的情况下使用</span></span><br><span class="line">read_line(Id, Text, File) -&gt;</span><br><span class="line">    MaxLine = <span class="keyword">case</span> get_env({max_line, Id, File}) <span class="keyword">of</span></span><br><span class="line">                  undefined -&gt; max_line(File) - ?SHOW_LINES_INIT;</span><br><span class="line">                  MaxLine1 -&gt; MaxLine1</span><br><span class="line">              <span class="keyword">end</span>,</span><br><span class="line">    OldCTime = <span class="keyword">case</span> get_env({ctime, Id, File}) <span class="keyword">of</span></span><br><span class="line">                   undefined -&gt; get_ctime(File);</span><br><span class="line">                   CTime1 -&gt; CTime1</span><br><span class="line">               <span class="keyword">end</span>,</span><br><span class="line"></span><br><span class="line">    NowCtime = get_ctime(File),</span><br><span class="line">    MaxLine = <span class="keyword">case</span> OldCTime =:= NowCtime <span class="keyword">of</span></span><br><span class="line">                  <span class="literal">true</span> -&gt; MaxLine;</span><br><span class="line">                  <span class="literal">false</span> -&gt;</span><br><span class="line">                      set_env({max_line, Id, File}, <span class="number">0</span>),</span><br><span class="line">                      <span class="number">0</span></span><br><span class="line">              <span class="keyword">end</span>,</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> file:open(File, [read]) <span class="keyword">of</span></span><br><span class="line">        {ok, FD} -&gt;</span><br><span class="line">            set_env({max_line, Id, File}, MaxLine),</span><br><span class="line">            read_line(Id, Text, File, FD, <span class="number">1</span>, MaxLine);</span><br><span class="line">        _ -&gt;</span><br><span class="line">            set_env({max_line, Id, File}, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line">read_line(Id, Text, File, FD, Line, MaxLine) -&gt;</span><br><span class="line">    <span class="keyword">case</span> file:read_line(FD) <span class="keyword">of</span></span><br><span class="line">        {ok, Data} <span class="keyword">when</span> Line &gt; MaxLine -&gt;</span><br><span class="line">            wxTextCtrl:appendText(Text, Data),</span><br><span class="line">            set_env({max_line, Id, File}, Line),</span><br><span class="line">            read_line(Id, Text, File, FD, Line + <span class="number">1</span>, MaxLine);</span><br><span class="line">        {ok, _Data} -&gt;</span><br><span class="line">            read_line(Id, Text, File, FD, Line + <span class="number">1</span>, MaxLine);</span><br><span class="line">        eof -&gt;</span><br><span class="line">            file:close(FD)</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 获取文件最大行数</span></span><br><span class="line">max_line(File) -&gt;</span><br><span class="line">    <span class="keyword">case</span> file:open(File, [read]) <span class="keyword">of</span></span><br><span class="line">        {ok, FD} -&gt; max_line(FD, <span class="number">0</span>);</span><br><span class="line">        _ -&gt; <span class="number">0</span></span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line">max_line(FD, Line) -&gt;</span><br><span class="line">    <span class="keyword">case</span> file:read_line(FD) <span class="keyword">of</span></span><br><span class="line">        {ok, _Data} -&gt;</span><br><span class="line">            max_line(FD, Line + <span class="number">1</span>);</span><br><span class="line">        eof -&gt;</span><br><span class="line">            file:close(FD),</span><br><span class="line">            Line</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line">get_ctime(File) -&gt;</span><br><span class="line">    <span class="keyword">case</span> file:read_file_info(File) <span class="keyword">of</span></span><br><span class="line">        {ok, #file_info{ctime = Ctime}} -&gt; Ctime;</span><br><span class="line">        _ -&gt; undefined</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 创建按钮</span></span><br><span class="line">create_btn_list(Panel, CfgList) -&gt;</span><br><span class="line">    Fun = <span class="keyword">fun</span>(#wx_elem_cfg{id = Id, name = Name}) -&gt;</span><br><span class="line">                  Btn = wxButton:new(Panel, Id, [{label, Name}, {size, {?BUTTON_SIZE_X, ?BUTTON_SIZE_Y}}]),</span><br><span class="line">                  <span class="comment">%% Btn = wxButton:new(Panel, Id, [{label, Name}]),</span></span><br><span class="line">                  #wx_elem_state{id = Id, wx = Btn}</span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    lists:map(Fun, CfgList).</span><br><span class="line"><span class="comment">%% 创建日志框</span></span><br><span class="line">create_text_list(Panel, CfgList) -&gt;</span><br><span class="line">    Fun = <span class="keyword">fun</span>(#wx_elem_cfg{id = Id}) -&gt;</span><br><span class="line">                  Text = wxTextCtrl:new(Panel, Id, [</span><br><span class="line">                                                    {size, {?TEXT_SIZE_X, ?TEXT_SIZE_Y}},</span><br><span class="line">                                                    {style, ?wxTE_READONLY bor ?wxTE_MULTILINE}</span><br><span class="line">                                                   ]),</span><br><span class="line">                  <span class="comment">%% TextAttr = wxTextAttr:new(),</span></span><br><span class="line">                  <span class="comment">%% wxTextAttr:setBackgroundColour(TextAttr, {255, 0, 0}),</span></span><br><span class="line">                  <span class="comment">%% wxTextAttr:setFont(TextAttr, wxFont:new(20, ?wxDEFAULT, ?wxFONTSTYLE_NORMAL, ?wxFONTWEIGHT_NORMAL)),</span></span><br><span class="line">                  <span class="comment">%% %% TextAttr = wxTextAttr:new({255, 0, 0}, [</span></span><br><span class="line">                  <span class="comment">%% %%                             {colBack, {255, 0, 0}},</span></span><br><span class="line">                  <span class="comment">%% %%                             {font, wxFont:new(20, ?wxDEFAULT, ?wxFONTSTYLE_NORMAL, ?wxFONTWEIGHT_NORMAL)}</span></span><br><span class="line">                  <span class="comment">%% %%                            ]),</span></span><br><span class="line">                  <span class="comment">%% wxTextCtrl:setDefaultStyle(Text, TextAttr),</span></span><br><span class="line">                  #wx_elem_state{id = Id, wx = Text}</span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    lists:map(Fun, CfgList).</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 界面关闭</span></span><br><span class="line">close(#state{frame = Frame, text_list = TextList}) -&gt;</span><br><span class="line">    Fun = <span class="keyword">fun</span>(#wx_elem_state{log_pid = Pid}) -&gt; Pid ! {close} <span class="keyword">end</span>,</span><br><span class="line">    lists:foreach(Fun, TextList),</span><br><span class="line">    timer:sleep(<span class="number">500</span>),</span><br><span class="line">    wxWindow:destroy(Frame),</span><br><span class="line">    wx:destroy(),</span><br><span class="line">    <span class="keyword">case</span> get_env(log_pid) <span class="keyword">of</span></span><br><span class="line">        undefined -&gt; skip;</span><br><span class="line">        IO -&gt; file:close(IO)</span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    kill_by_os(os:getpid()),</span><br><span class="line">    ok.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 结束系统进程</span></span><br><span class="line">kill_by_os(OsPid) -&gt;</span><br><span class="line">    <span class="keyword">case</span> os:type() <span class="keyword">of</span></span><br><span class="line">        {win32, _} -&gt;</span><br><span class="line">            os:cmd(lists:concat([<span class="string">&quot;tskill &quot;</span>, OsPid]));</span><br><span class="line">        _ -&gt;</span><br><span class="line">            os:cmd(lists:concat([<span class="string">&quot;kill -9 &quot;</span>, OsPid]))</span><br><span class="line">    <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 时间格式化</span></span><br><span class="line">time_format() -&gt;</span><br><span class="line">    {{Y, M, D}, {HH, MM, SS}} = calendar:universal_time_to_local_time(calendar:universal_time()),</span><br><span class="line">    I2L = <span class="keyword">fun</span>(I) <span class="keyword">when</span> I &lt; <span class="number">10</span>  -&gt; [$<span class="number">0</span>, $<span class="number">0</span>+I];</span><br><span class="line">             (I)              -&gt; integer_to_list(I)</span><br><span class="line">          <span class="keyword">end</span>,</span><br><span class="line">    io_lib:format(<span class="string">&quot;~s-~s-~s ~s:~s:~s&quot;</span>, [I2L(Y), I2L(M), I2L(D), I2L(HH), I2L(MM), I2L(SS)]).</span><br><span class="line"></span><br><span class="line">parse_args([]) -&gt; ok;</span><br><span class="line">parse_args([Help|_]) <span class="keyword">when</span> Help =:= <span class="string">&quot;-h&quot;</span>;</span><br><span class="line">                          Help =:= <span class="string">&quot;--help&quot;</span> -&gt;</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;================================================&quot;</span>),</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;Args: --log_file FileName --project_root CfgDir &quot;</span>),</span><br><span class="line">    ?DEBUG_MSG(<span class="string">&quot;================================================&quot;</span>),</span><br><span class="line">    halt(<span class="number">0</span>);</span><br><span class="line">parse_args([<span class="string">&quot;--log_file&quot;</span>, FileName|OtherArgs]) -&gt;</span><br><span class="line">    set_env(log_file, FileName),</span><br><span class="line">    parse_args(OtherArgs);</span><br><span class="line">parse_args([<span class="string">&quot;--project_root&quot;</span>, DirName|OtherArgs]) -&gt;</span><br><span class="line">    set_env(project_root, DirName),</span><br><span class="line">    parse_args(OtherArgs);</span><br><span class="line">parse_args([_PosPar|OtherArgs]) -&gt;</span><br><span class="line">    parse_args(OtherArgs).</span><br><span class="line"></span><br><span class="line">set_env(Key, Val) -&gt;</span><br><span class="line">    application:set_env(?APP_NAME, Key, Val).</span><br><span class="line">get_env(Key) -&gt; get_env(Key, undefined).</span><br><span class="line">get_env(Key, Default) -&gt;</span><br><span class="line">    application:get_env(?APP_NAME, Key, Default).</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bat"><figcaption><span>server_ctl_gui.bat</span><a href="/downloads/code/server_ctl_gui.bat">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> FILE_DIR=%~dp0</span><br><span class="line">RunHiddenConsole escript <span class="variable">%FILE_DIR%</span>/server_ctl_gui.erl --log_file <span class="variable">%FILE_DIR%</span>/server_ctl_gui.log --project_root E:/qqjy/qqjy_server/config</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/erlang/" rel="tag"># erlang</a>
+              <a href="/tags/wxWidgets/" rel="tag"># wxWidgets</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/15/centos/centos-letsencrypt/" rel="prev" title="CENTOS下安装Let’s Encrypt证书">
+      <i class="fa fa-chevron-left"></i> CENTOS下安装Let’s Encrypt证书
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/29/centos/centos-php56/" rel="next" title="CENTOS6下安装php56">
+      CENTOS6下安装php56 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kingwen0302"
+      src="/downloads/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">kingwen0302</p>
+  <div class="site-description" itemprop="description">情文，记录点点滴滴，好记性不如个烂笔头</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:kingwen0302@msn.com" title="E-Mail → mailto:kingwen0302@msn.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/kingwen0302" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;kingwen0302" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kingwen0302</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'pe6FSm3v5gzBpK4Hh';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-mingilin-com.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.mingilin.com/2017/09/28/erlang/erlang-wx/";
+    this.page.identifier = "2017/09/28/erlang/erlang-wx/";
+    this.page.title = "erlang wxWidgets";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://www-mingilin-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <!-- <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <script data-ad-client="pub-8880966048781015" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.mingilin.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="使用svn命令合并版本, 一个没有实际使用过的脚本, 备份下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用svn命令合并版本">
+<meta property="og:url" content="https://www.mingilin.com/2017/09/30/shell/shell-svn-merge/index.html">
+<meta property="og:site_name" content="情文のBLOG">
+<meta property="og:description" content="使用svn命令合并版本, 一个没有实际使用过的脚本, 备份下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-30T01:35:56.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:26:23.612Z">
+<meta property="article:author" content="kingwen0302">
+<meta property="article:tag" content="svn">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="merge">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.mingilin.com/2017/09/30/shell/shell-svn-merge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>使用svn命令合并版本 | 情文のBLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74683107-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-74683107-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e340a0928b11036ca5deeaf890942c4b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="情文のBLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">情文のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">记录点点滴滴</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">71</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">112</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2017/09/30/shell/shell-svn-merge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          使用svn命令合并版本
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-30 09:35:56" itemprop="dateCreated datePublished" datetime="2017-09-30T09:35:56+08:00">2017-09-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/svn/" itemprop="url" rel="index"><span itemprop="name">svn</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2017/09/30/shell/shell-svn-merge/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/30/shell/shell-svn-merge/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>使用svn命令合并版本, 一个没有实际使用过的脚本, 备份下</p>
+<span id="more"></span>
+<figure class="highlight sh"><figcaption><span>svn_merge.sh</span><a href="/downloads/code/svn_merge.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash - </span></span><br><span class="line"><span class="comment">#===============================================================================</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#          FILE: svn_merge.sh</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#         USAGE: ./svn_merge.sh </span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#   DESCRIPTION: </span></span><br><span class="line"><span class="comment">#               合并脚本</span></span><br><span class="line"><span class="comment">#               1. 根据版本依次合并</span></span><br><span class="line"><span class="comment">#               2. 遇到冲突使用Ctrl-C中断</span></span><br><span class="line"><span class="comment">#               3. 解决冲突后再次执行,继续合并</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#       OPTIONS: ---</span></span><br><span class="line"><span class="comment">#  REQUIREMENTS: ---</span></span><br><span class="line"><span class="comment">#          BUGS: ---</span></span><br><span class="line"><span class="comment">#         NOTES: ---</span></span><br><span class="line"><span class="comment">#        AUTHOR: kingwen0302, kingwen0302@msn.com</span></span><br><span class="line"><span class="comment">#  ORGANIZATION: </span></span><br><span class="line"><span class="comment">#       CREATED: 2017/5/12 16:15</span></span><br><span class="line"><span class="comment">#      REVISION:  ---</span></span><br><span class="line"><span class="comment">#===============================================================================</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o nounset                              <span class="comment"># Treat unset variables as an error</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 配置</span></span><br><span class="line">SRC_SVN_URL=http://svn_url/server/trunk</span><br><span class="line">SVN_USER=<span class="string">&quot;svn_user&quot;</span></span><br><span class="line">SVN_PASS=<span class="string">&quot;svn_pass&quot;</span></span><br><span class="line"></span><br><span class="line">SRC_SVN_URL_BASE=$(basename <span class="variable">$SRC_SVN_URL</span>)</span><br><span class="line"></span><br><span class="line">CUR_DIR=$(<span class="built_in">cd</span> $(dirname <span class="variable">$0</span>); <span class="built_in">pwd</span>)</span><br><span class="line"><span class="comment">## 已经合并成功的版本号</span></span><br><span class="line">MERGE_SUCCESS_VERSION=<span class="variable">${CUR_DIR}</span>/versions</span><br><span class="line"><span class="comment">## 已经合并成功的注释</span></span><br><span class="line">MERGE_SUCCESS_COMMENT=<span class="variable">${CUR_DIR}</span>/comment</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> SVN_EDITOR=<span class="string">&quot;vim&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">svn_merge_one</span></span>(){</span><br><span class="line">    version=<span class="variable">$1</span></span><br><span class="line">    <span class="comment">## 如果svn是中文的话,要过滤中文</span></span><br><span class="line">    merge_files=$(svn <span class="built_in">log</span> -r <span class="variable">${version}</span> -qv <span class="variable">${SRC_SVN_URL}</span> --username <span class="variable">${SVN_USER}</span> --password <span class="variable">${SVN_PASS}</span> | grep -v <span class="string">&quot;^r&quot;</span> | grep -v <span class="string">&quot;^Changed paths:&quot;</span> | grep -v <span class="string">&quot;^-------------&quot;</span> | awk <span class="string">&quot;{print \$1\$2}&quot;</span>)</span><br><span class="line"></span><br><span class="line">    base_merge_files=<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> <span class="variable">$merge_files</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> [[ <span class="variable">$base_merge_files</span> == <span class="string">&quot;&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">            base_merge_files=$(basename <span class="variable">$f</span>)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            base_merge_files=<span class="string">&quot;<span class="variable">${base_merge_files}</span> <span class="subst">$(basename $f)</span>&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$base_merge_files</span>&quot;</span> != <span class="string">&quot;&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;==&gt;START MERGE <span class="variable">${version}</span> [<span class="variable">${base_merge_files}</span>]&quot;</span></span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> <span class="variable">${merge_files}</span>; <span class="keyword">do</span></span><br><span class="line">            svn_cmd=$(expr substr <span class="variable">$f</span> 1 1)</span><br><span class="line">            f=$(<span class="built_in">echo</span> <span class="variable">$f</span> | sed -e <span class="string">&quot;s/^.//&quot;</span> | sed -e <span class="string">&quot;s/<span class="variable">${SRC_SVN_URL_BASE}</span>//&quot;</span>  | sed -e <span class="string">&quot;s/\/\//\//g&quot;</span> | sed -e <span class="string">&quot;s/\/\//\//g&quot;</span>)</span><br><span class="line">            local_f=<span class="string">&quot;.<span class="variable">$f</span>&quot;</span></span><br><span class="line">            <span class="keyword">case</span> <span class="variable">$svn_cmd</span> <span class="keyword">in</span></span><br><span class="line">                A)</span><br><span class="line">                    tmp=<span class="string">&quot;svn copy --username <span class="variable">${SVN_USER}</span> --password <span class="variable">${SVN_PASS}</span> -r <span class="variable">$version</span> <span class="variable">${SRC_SVN_URL}</span><span class="variable">$f</span> <span class="variable">$local_f</span>&quot;</span></span><br><span class="line">                    ;;</span><br><span class="line">                M)</span><br><span class="line">                    <span class="comment">## tmp=&quot;svn merge --username ${SVN_USER} --password ${SVN_PASS} -r $((version-1)):$version --ignore-ancestry ${SRC_SVN_URL}$f $local_f&quot;</span></span><br><span class="line">                    tmp=<span class="string">&quot;svn merge --username <span class="variable">${SVN_USER}</span> --password <span class="variable">${SVN_PASS}</span> -c <span class="variable">$version</span> --ignore-ancestry <span class="variable">${SRC_SVN_URL}</span><span class="variable">$f</span> <span class="variable">$local_f</span>&quot;</span></span><br><span class="line">                    ;;</span><br><span class="line">                D)</span><br><span class="line">                    tmp=<span class="string">&quot;svn del <span class="variable">$local_f</span>&quot;</span></span><br><span class="line">                    ;;</span><br><span class="line">                *)</span><br><span class="line">                    <span class="built_in">echo</span> <span class="string">&quot;暂不支持的命令&quot;</span></span><br><span class="line">                    <span class="built_in">exit</span></span><br><span class="line">                    ;;</span><br><span class="line">            <span class="keyword">esac</span></span><br><span class="line">            ttmp=$(<span class="variable">$tmp</span>)</span><br><span class="line">            <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;    [FAIL]<span class="variable">$ttmp</span>&quot;</span></span><br><span class="line">                <span class="built_in">exit</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;    [SUCCESS]<span class="variable">$f</span>&quot;</span></span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 写入合并成功版本号</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$version</span>&quot;</span> &gt;&gt; <span class="variable">${MERGE_SUCCESS_VERSION}</span></span><br><span class="line">        <span class="comment">## 写入合并成功日志</span></span><br><span class="line">        svn <span class="built_in">log</span> -r <span class="variable">${version}</span> -v <span class="variable">${SRC_SVN_URL}</span> --username <span class="variable">${SVN_USER}</span> --password <span class="variable">${SVN_PASS}</span> | grep -v <span class="string">&quot;^r&quot;</span> | grep -v <span class="string">&quot;^Changed paths:&quot;</span> | grep -v <span class="string">&quot;^-------------&quot;</span> | grep -v <span class="string">&quot;^$&quot;</span> | grep -v <span class="string">&quot;^ &quot;</span> &gt;&gt; <span class="variable">${MERGE_SUCCESS_COMMENT}</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;---------------------&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> version1:version2 version3 &quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;---------------------&quot;</span></span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$#</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">## 确保文件存在</span></span><br><span class="line">        touch <span class="variable">${MERGE_SUCCESS_VERSION}</span></span><br><span class="line">        touch <span class="variable">${MERGE_SUCCESS_COMMENT}</span></span><br><span class="line">        <span class="comment">## 获取版本</span></span><br><span class="line">        f_version=$(<span class="built_in">echo</span> <span class="variable">$1</span> | cut -d : -f 1)</span><br><span class="line">        t_version=$(<span class="built_in">echo</span> <span class="variable">$1</span> | cut -d : -f 2)</span><br><span class="line">        <span class="keyword">for</span> version <span class="keyword">in</span> $(seq <span class="variable">$f_version</span> <span class="variable">$t_version</span>); <span class="keyword">do</span></span><br><span class="line">            <span class="comment">## 是否已经合并成功</span></span><br><span class="line">            is_merge_success=0</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> $(cat <span class="variable">${MERGE_SUCCESS_VERSION}</span>); <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">${v}</span>&quot;</span> == <span class="string">&quot;<span class="variable">$version</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">                    is_merge_success=1</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">            <span class="keyword">done</span></span><br><span class="line">            <span class="keyword">if</span> [ <span class="variable">$is_merge_success</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">                svn_merge_one <span class="variable">$version</span></span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">shift</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">mv <span class="variable">${MERGE_SUCCESS_VERSION}</span> <span class="variable">${MERGE_SUCCESS_VERSION}</span>_bak</span><br><span class="line">cat <span class="variable">${MERGE_SUCCESS_COMMENT}</span></span><br><span class="line">mv <span class="variable">${MERGE_SUCCESS_COMMENT}</span> <span class="variable">${MERGE_SUCCESS_COMMENT}</span>_bak</span><br></pre></td></tr></table></figure>
+
+<p>乱码是因为编码问题, 在windows下使用cp936</p>
+<figure class="highlight sh"><figcaption><span>tor_merge.sh</span><a href="/downloads/code/tor_merge.sh">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## kingwen0302</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## ��һ�����ϲ����뵽������/��֧</span></span><br><span class="line"><span class="comment">## ��windows����, ��˱�����gbk������utf8</span></span><br><span class="line"><span class="comment">## ��Ҫ��װgit for windows</span></span><br><span class="line"><span class="comment">## sh tor_merge.sh ��֧�汾 1,3-4</span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"></span><br><span class="line">CUR_DIR=$(<span class="built_in">cd</span> $(dirname <span class="variable">$0</span>); <span class="built_in">pwd</span>)</span><br><span class="line"><span class="comment">## �ȶ����ĵ�ַ</span></span><br><span class="line"><span class="comment">## svn�˺�����</span></span><br><span class="line">SVN_BASE_URL=<span class="string">&quot;svn://url/xxx&quot;</span></span><br><span class="line">SVN_PARAM=<span class="string">&quot;--username kingwen0302 --password xxxxx&quot;</span></span><br><span class="line"><span class="comment">## �ϲ���Դ��ַ</span></span><br><span class="line">SRC_SVN_URL=<span class="string">&quot;<span class="variable">${SVN_BASE_URL}</span>/trunk_cn_s&quot;</span></span><br><span class="line"><span class="comment">## ��ǰĿ¼��� �ȶ�/��֧ Ŀ¼</span></span><br><span class="line">RELATIVE_DIR=<span class="string">&quot;<span class="variable">$CUR_DIR</span>/../&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## ## �����ȶ���/��֧��Ŀ¼</span></span><br><span class="line"><span class="comment">## DEST_DIR_LIST=(</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../trunk_kr_s&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../trunk_tw_s&quot;</span></span><br><span class="line"><span class="comment">## ## &quot;$CUR_DIR/../trunk_cn_s&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../trunk_vng_s&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../branch_cn/jysy_cn_2102700&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../branch_cn/jysy_cn_2102701&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../branch_kr/jysy_kr_2102700&quot;</span></span><br><span class="line"><span class="comment">## &quot;$CUR_DIR/../branch_vng/jysy_vn_2102700&quot;</span></span><br><span class="line"><span class="comment">## )</span></span><br><span class="line"></span><br><span class="line">DEST_DIR_LIST=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">find_branch_list</span></span>(){</span><br><span class="line">    MIN_VER=<span class="variable">$1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;��Ѱ &gt;=<span class="variable">$MIN_VER</span> �汾�ķ�֧ ...&quot;</span></span><br><span class="line">    stable_dir=$(svn list <span class="variable">$SVN_BASE_URL</span> <span class="variable">$SVN_PARAM</span> | grep trunk_.*_s)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">${stable_dir[@]}</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;�����ȶ���: <span class="variable">$RELATIVE_DIR</span>/<span class="variable">$i</span>&quot;</span></span><br><span class="line">        DEST_DIR_LIST=<span class="string">&quot;<span class="variable">$DEST_DIR_LIST</span> <span class="variable">$RELATIVE_DIR</span>/<span class="variable">$i</span>&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    branch_dir=$(svn list <span class="variable">$SVN_BASE_URL</span> <span class="variable">$SVN_PARAM</span> | grep branch_.*)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">${branch_dir[@]}</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> $(svn list <span class="variable">$SVN_BASE_URL</span>/<span class="variable">$i</span> <span class="variable">$SVN_PARAM</span>); <span class="keyword">do</span></span><br><span class="line">            ver=$(<span class="built_in">echo</span> <span class="variable">$j</span> | grep -Eo <span class="string">&#x27;[0-9]+&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$ver</span>&quot;</span> == <span class="string">&quot;&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">                ver=0</span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">            <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$ver</span>&quot;</span> -ge <span class="string">&quot;<span class="variable">$MIN_VER</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;���ַ�֧: <span class="variable">$RELATIVE_DIR</span>/<span class="variable">$i</span>/<span class="variable">$j</span>&quot;</span></span><br><span class="line">                DEST_DIR_LIST=<span class="string">&quot;<span class="variable">$DEST_DIR_LIST</span> <span class="variable">$RELATIVE_DIR</span>/<span class="variable">$i</span>/<span class="variable">$j</span>&quot;</span></span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">## �ϲ�һ����֧</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">svn_merge_one</span></span>(){</span><br><span class="line">    dest_dir=<span class="variable">$1</span></span><br><span class="line">    version=<span class="variable">$2</span></span><br><span class="line">    <span class="comment">## �������ɵ�ַ</span></span><br><span class="line">    dest_dir=<span class="string">&quot;<span class="subst">$(dirname $dest_dir)</span>/<span class="subst">$(basename $dest_dir)</span>&quot;</span></span><br><span class="line">    <span class="keyword">if</span> [ ! -d <span class="string">&quot;<span class="variable">${dest_dir}</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        svn_dir=$(basename $(dirname <span class="variable">${dest_dir}</span>))/$(basename <span class="variable">${dest_dir}</span>)</span><br><span class="line">        svn co <span class="variable">$SVN_PARAM</span> <span class="variable">${SVN_BASE_URL}</span>/<span class="variable">$svn_dir</span> <span class="variable">$dest_dir</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;����Ŀ¼: <span class="variable">${dest_dir}</span>&quot;</span> &amp;&amp; <span class="built_in">cd</span> <span class="variable">$dest_dir</span> &amp;&amp; svn up</span><br><span class="line">    TortoiseProc /<span class="built_in">command</span>:merge /fromurl:<span class="variable">$SRC_SVN_URL</span> /revrange:<span class="variable">${version/:/-}</span> /path:<span class="string">&quot;*&quot;</span> /closeonend:1</span><br><span class="line">    TortoiseProc /<span class="built_in">command</span>:commit /path:<span class="string">&quot;*&quot;</span> /closeonend:1</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">svn_merge</span></span>(){</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;ԴUrl: <span class="variable">${SRC_SVN_URL}</span>&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;�汾: <span class="variable">$1</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> dest_dir <span class="keyword">in</span> <span class="variable">${DEST_DIR_LIST[@]}</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Ŀ���֧: <span class="variable">${dest_dir}</span>&quot;</span></span><br><span class="line">        <span class="built_in">read</span> -p <span class="string">&quot;�Ƿ�ϲ�(Y|N):&quot;</span></span><br><span class="line">        <span class="keyword">case</span> <span class="variable">$REPLY</span> <span class="keyword">in</span></span><br><span class="line">            Y|y)</span><br><span class="line">                svn_merge_one <span class="variable">$dest_dir</span> <span class="variable">$1</span></span><br><span class="line">                ;;</span><br><span class="line">            *)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;��ȡ���˱��κϲ�&quot;</span></span><br><span class="line">                ;;</span><br><span class="line">        <span class="keyword">esac</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">help</span></span>(){</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;ʹ��1: <span class="variable">$0</span> BRANCH_VERSION ver,ver1:ver2&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;ʹ��2: <span class="variable">$0</span> BRANCH_VERSION ver,ver1-ver2&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;example: <span class="variable">$0</span> 2102700 1000,10002-10005&quot;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">BRANCH_VERSION=<span class="variable">$1</span></span><br><span class="line">SVN_VERSION=<span class="variable">$2</span></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$BRANCH_VERSION</span>&quot;</span> == <span class="string">&quot;&quot;</span> || <span class="string">&quot;<span class="variable">$SVN_VERSION</span>&quot;</span> == <span class="string">&quot;&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">help</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    find_branch_list <span class="variable">$BRANCH_VERSION</span></span><br><span class="line">    svn_merge <span class="variable">${SVN_VERSION}</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/svn/" rel="tag"># svn</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
+              <a href="/tags/merge/" rel="tag"># merge</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/30/shell/shell-soffice/" rel="prev" title="使用libreoffice将xlsx转换为html文件">
+      <i class="fa fa-chevron-left"></i> 使用libreoffice将xlsx转换为html文件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/20/centos/centos-image-videos-info/" rel="next" title="CENTOS下查看图片/视频的创建时间">
+      CENTOS下查看图片/视频的创建时间 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kingwen0302"
+      src="/downloads/assets/avatar.jpg">
+  <p class="site-author-name" itemprop="name">kingwen0302</p>
+  <div class="site-description" itemprop="description">情文，记录点点滴滴，好记性不如个烂笔头</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:kingwen0302@msn.com" title="E-Mail → mailto:kingwen0302@msn.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/kingwen0302" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;kingwen0302" rel="noopener" target="_blank"><i class="fa fa-fw fa-telegram"></i>Telegram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kingwen0302</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v5.4.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'pe6FSm3v5gzBpK4Hh';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://www-mingilin-com.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.mingilin.com/2017/09/30/shell/shell-svn-merge/";
+    this.page.identifier = "2017/09/30/shell/shell-svn-merge/";
+    this.page.title = "使用svn命令合并版本";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://www-mingilin-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
