@@ -146,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">113</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">114</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -201,6 +201,112 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2021/07/30/other/other-davx5-sync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/30/other/other-davx5-sync/" class="post-title-link" itemprop="url">【转】DAVx5无法开启OpenTasks/Tasks.org权限的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-30 18:00:00" itemprop="dateCreated datePublished" datetime="2021-07-30T18:00:00+08:00">2021-07-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/07/30/other/other-davx5-sync/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/07/30/other/other-davx5-sync/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>转载链接: <a target="_blank" rel="noopener" href="https://blog.wanfajie.com/2021/02/566">https://blog.wanfajie.com/2021/02/566</a></p>
+</blockquote>
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">原文</a></li><li class="tab"><a href="#tab-2">附加</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>小米6手机（MIUI 11 20.1.16）中使用 DAVx5 显示缺少权限、无法同步 Tasks/OpenTasks 中任务。并且在 “设置” -&gt; “应用权限” 中点击 “OpenTasks权限”/“Tasks权限” 开关无法打开。查看 DAVx5 日志发现以下四项权限被禁止：</p>
+<ul>
+<li>org.dmfs.permission.READ_TASKS: denied</li>
+<li>org.dmfs.permission.WRITE_TASKS: denied</li>
+<li>org.tasks.permission.READ_TASKS: denied</li>
+<li>org.tasks.permission.WRITE_TASKS: denied</li>
+</ul>
+<p>令人困惑的是，MIUI 既不给出授权提示，在权限管理中也找不到自定义应用权限授权的地方。对 MIUI 的“设置”地毯式搜索后，终于找到了解决方法。</p>
+<ol>
+<li>首先安装好 DAVx5 及 OpenTasks/Tasks.org 应用。</li>
+<li>在“全部参数”中点击5次“MIUI 版本”，开启开发者模式。</li>
+<li>在“开发者选项”中，关闭位于最下面的几个选项中的“启用MIUI优化”。</li>
+<li>回到桌面，长按 DAVx5 应用的图标，点击“应用信息”。<br>P.S.: 此时，应用信息界面变了个样子。如果是通过“设置”进入“应用信息”的话，界面将保持 MIUI 的原状。</li>
+<li>然后，点击“应用信息”界面中的“权限”。进入“应用权限”界面后，你会在最下方看到“其他权限”选项。</li>
+<li>进入“其他权限”，权限列表中将出现 “Tasks” 之类的权限，打开权限开关。<br>进入 DAVx5 的 “设置” -&gt; “应用权限”，此时就可以开启 “OpenTasks权限”/“Tasks权限” 开关并正常同步 OpenTasks 中的数据。</li>
+</ol>
+<p>最后，建议再重新开启“启用MIUI优化”。关闭优化后，许多设置像是重置了一样，一来重新设置嫌麻烦，二来开启MIUI优化手机使用起来于我而言也没什么不足。网络上对MIUI优化众说纷纭，就看各位自行判断了。</p></div><div class="tab-pane" id="tab-2"><ol>
+<li>在<code>Google Play</code>上<code>DAVx5</code>需要购买，在<code>F-Droid</code>免费；</li>
+<li>按照原文的方法，第一次重新“开启MIUI优化”后，<code>DAVx5</code>权限被重置了，<br>又重新关闭再开启，<code>DAVx5</code>可以用了，<br>可能成功与否要看人品；</li>
+<li><code>Tasks.org</code>需要订购后才能使用<code>DAVx5</code>同步，没米，果断放弃，用OpenTasks；</li>
+<li>使用<a target="_blank" rel="noopener" href="https://radicale.org/3.0.html"><code>Radicale</code></a>自建<code>CalDAV</code>和<code>CardDAV</code>Server，真香，<br>如果配合docker就更香；</li>
+<li>PC上用<code>Thunder Bird</code>+<code>TbSync</code>插件，管理日程和联系人；</li>
+</ol></div></div></div>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -988,93 +1094,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2020/06/05/windows/window-powershell-stock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
-      <meta itemprop="name" content="kingwen0302">
-      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="情文のBLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/05/windows/window-powershell-stock/" class="post-title-link" itemprop="url">powershell实现的股票查看小工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-05 09:08:52" itemprop="dateCreated datePublished" datetime="2020-06-05T09:08:52+08:00">2020-06-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/06/05/windows/window-powershell-stock/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/05/windows/window-powershell-stock/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/downloads/code/stock/stock.gif" alt="效果展示"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/05/windows/window-powershell-stock/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1147,7 +1166,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
