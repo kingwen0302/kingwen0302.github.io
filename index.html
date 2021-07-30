@@ -265,10 +265,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>转载链接: <a target="_blank" rel="noopener" href="https://blog.wanfajie.com/2021/02/566">https://blog.wanfajie.com/2021/02/566</a></p>
+          <div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">原文</a></li><li class="tab"><a href="#tab-2">附加</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><blockquote>
+<p>原文链接: <a target="_blank" rel="noopener" href="https://blog.wanfajie.com/2021/02/566">https://blog.wanfajie.com/2021/02/566</a></p>
 </blockquote>
-<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">原文</a></li><li class="tab"><a href="#tab-2">附加</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>小米6手机（MIUI 11 20.1.16）中使用 DAVx5 显示缺少权限、无法同步 Tasks/OpenTasks 中任务。并且在 “设置” -&gt; “应用权限” 中点击 “OpenTasks权限”/“Tasks权限” 开关无法打开。查看 DAVx5 日志发现以下四项权限被禁止：</p>
+<p>小米6手机（MIUI 11 20.1.16）中使用 DAVx5 显示缺少权限、无法同步 Tasks/OpenTasks 中任务。并且在 “设置” -&gt; “应用权限” 中点击 “OpenTasks权限”/“Tasks权限” 开关无法打开。查看 DAVx5 日志发现以下四项权限被禁止：</p>
 <ul>
 <li>org.dmfs.permission.READ_TASKS: denied</li>
 <li>org.dmfs.permission.WRITE_TASKS: denied</li>
@@ -285,9 +285,9 @@
 <li>进入“其他权限”，权限列表中将出现 “Tasks” 之类的权限，打开权限开关。<br>进入 DAVx5 的 “设置” -&gt; “应用权限”，此时就可以开启 “OpenTasks权限”/“Tasks权限” 开关并正常同步 OpenTasks 中的数据。</li>
 </ol>
 <p>最后，建议再重新开启“启用MIUI优化”。关闭优化后，许多设置像是重置了一样，一来重新设置嫌麻烦，二来开启MIUI优化手机使用起来于我而言也没什么不足。网络上对MIUI优化众说纷纭，就看各位自行判断了。</p></div><div class="tab-pane" id="tab-2"><ol>
-<li>在<code>Google Play</code>上<code>DAVx5</code>需要购买，在<code>F-Droid</code>免费；</li>
+<li>在<code>Google Play</code>上<code>DAVx5</code>需要米，在<a target="_blank" rel="noopener" href="https://f-droid.org/"><code>F-Droid</code></a>免费；</li>
 <li>按照原文的方法，第一次重新“开启MIUI优化”后，<code>DAVx5</code>权限被重置了，<br>又重新关闭再开启，<code>DAVx5</code>可以用了，<br>可能成功与否要看人品；</li>
-<li><code>Tasks.org</code>需要订购后才能使用<code>DAVx5</code>同步，没米，果断放弃，用OpenTasks；</li>
+<li><code>Tasks.org</code>需要订购后才能使用<code>DAVx5</code>同步，没米，果断放弃，用<code>OpenTasks</code>；</li>
 <li>使用<a target="_blank" rel="noopener" href="https://radicale.org/3.0.html"><code>Radicale</code></a>自建<code>CalDAV</code>和<code>CardDAV</code>Server，真香，<br>如果配合docker就更香；</li>
 <li>PC上用<code>Thunder Bird</code>+<code>TbSync</code>插件，管理日程和联系人；</li>
 </ol></div></div></div>
