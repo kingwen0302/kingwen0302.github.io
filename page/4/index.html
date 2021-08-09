@@ -146,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">114</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">116</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -201,6 +201,189 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2018/08/15/centos/centos-autojump/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/15/centos/centos-autojump/" class="post-title-link" itemprop="url">目录跳转神器autojump</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-15 16:25:51" itemprop="dateCreated datePublished" datetime="2018-08-15T16:25:51+08:00">2018-08-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/08/15/centos/centos-autojump/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/15/centos/centos-autojump/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install autojump</span><br></pre></td></tr></table></figure>
+
+<h2 id="CENTOS-LINUX使用"><a href="#CENTOS-LINUX使用" class="headerlink" title="CENTOS/LINUX使用"></a>CENTOS/LINUX使用</h2><p>安装后,重新打开终端,或执行<code>source etc/profile.d/autojump.sh</code>才可使用<br>在使用<code>j xxxx</code>前,要先<code>cd xxx/xxxx</code>一次<br>然后就可以愉快的使用<code>j xxxx</code>进行跳转了</p>
+<blockquote>
+<p>查看记录/配置文件: <code>j --stat</code></p>
+</blockquote>
+<h2 id="WIN使用"><a href="#WIN使用" class="headerlink" title="WIN使用"></a>WIN使用</h2><p><code>autojump</code>在<code>WINDOWS</code>没有安装成功,而且个人习惯使用<code>PowerShell</code></p>
+<p><code>PowerShell</code>下有一个替代者</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> ZLocation <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> xxxx</span><br><span class="line">z xxxx</span><br></pre></td></tr></table></figure>
+<p>使用方法和<code>autojump</code>类似,只是<code>j</code>换成了<code>z</code></p>
+<blockquote>
+<p>查看记录: <code>Get-ZLocation</code><br>配置文件: <code>C:\Users\Administrator\z-location.txt</code></p>
+</blockquote>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/vors/ZLocation.git">https://github.com/vors/ZLocation.git</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/wting/autojump.git">https://github.com/wting/autojump.git</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/vors/ZLocation/pull/42">https://github.com/vors/ZLocation/pull/42</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2018/08/09/erlang/erlang-macro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/09/erlang/erlang-macro/" class="post-title-link" itemprop="url">使用erl_tidy格式化代码宏定义注意</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-09 15:14:06" itemprop="dateCreated datePublished" datetime="2018-08-09T15:14:06+08:00">2018-08-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/erlang/" itemprop="url" rel="index"><span itemprop="name">erlang</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/08/09/erlang/erlang-macro/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/09/erlang/erlang-macro/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>自己写了一个rebar3插件,用于格式化代码,基于<code>erl_tidy</code><br>链接地址: <a target="_blank" rel="noopener" href="https://github.com/kingwen0302/rebar3_plugin_fmt.git">rebar3_plugin_fmt</a><br>无意中发现一个宏定义的问题</p>
+<p>源代码:</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-define</span><span class="params">(CALC_PERIOD_RATE, <span class="number">0.6</span>)</span>. <span class="comment">%% 权重概率</span></span><br></pre></td></tr></table></figure>
+<p>格式化后代码:</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-define</span><span class="params">(CALC_PERIOD_RATE, <span class="number">5.99999999999999977796e-1</span>)</span>. <span class="comment">%% 权重概率</span></span><br></pre></td></tr></table></figure>
+
+<p>因此,若是小数, 请使用<code>(6/10)</code>这种格式</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -912,180 +1095,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2018/05/25/other/other-googleplay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
-      <meta itemprop="name" content="kingwen0302">
-      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="情文のBLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/25/other/other-googleplay/" class="post-title-link" itemprop="url">解决无法在您所在的国家/地区购买google play</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-05-25 16:01:42" itemprop="dateCreated datePublished" datetime="2018-05-25T16:01:42+08:00">2018-05-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/05/25/other/other-googleplay/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/25/other/other-googleplay/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一直无法购买google play上的内容<br>各种百度/google,大多说<code>双币信用卡不支持</code>之类的话<br>经过多次摸索,终于找到了一个可用的流程</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/05/25/other/other-googleplay/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2018/04/09/windows/windows-v2ray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
-      <meta itemprop="name" content="kingwen0302">
-      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="情文のBLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/09/windows/windows-v2ray/" class="post-title-link" itemprop="url">v2ray配置[个人理解]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-04-09 13:48:36" itemprop="dateCreated datePublished" datetime="2018-04-09T13:48:36+08:00">2018-04-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2018/04/09/windows/windows-v2ray/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/09/windows/windows-v2ray/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近看到这篇的浏览量突然上升了<br>原因自然你懂得的<br>但是这篇是没有实质内容的<br>所以增加一个脚本,快速搭建<code>v2ray+nginx-tls-ws</code>梯子<br>速度相对kcp来说稍慢,但是胜在安全</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/04/09/windows/windows-v2ray/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1158,7 +1167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1187,6 +1196,18 @@
 
 
       </div>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 纵向广告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="pub-8880966048781015"
+             data-ad-slot="8862046850"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
     </div>
   </aside>

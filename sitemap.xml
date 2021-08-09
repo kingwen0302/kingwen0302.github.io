@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.mingilin.com/2021/08/09/other/other-lunar2solar/</loc>
+    
+    <lastmod>2021-08-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.mingilin.com/2021/08/08/windows/windows-git-clone-nopass/</loc>
+    
+    <lastmod>2021-08-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.mingilin.com/2021/07/30/other/other-davx5-sync/</loc>
     
     <lastmod>2021-07-30</lastmod>
@@ -858,7 +872,7 @@
 
   <url>
     <loc>https://www.mingilin.com/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -866,504 +880,504 @@
   
   <url>
     <loc>https://www.mingilin.com/tags/hexo/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/centos/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/aria2/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/sdcv/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/%E5%BC%80%E6%BA%90%E7%BD%91%E7%9B%98/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/KODExplorer/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/NextCloud/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/ftp/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/git/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/gitbook/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/gitea/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/gitolite3/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/git-server/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/exiv2/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/mediainfo/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/Let%E2%80%99s-Encrypt/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/mosh/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/nginx/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/ngrok/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/php/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/rsync/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/samba/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/screen/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/squid/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/ssh/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/proxy/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/supervisor/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/svn/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/tmux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/virtualbox/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/vpn/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/xlsx/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/python/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/yum/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/centos7/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/qpdf/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/vim8/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/erlang/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/httpc/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/rebar3/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/utf8/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/wxWidgets/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/github/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/misc/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/web/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/%E6%89%8B%E6%9C%BA/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/mysql/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/other/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/URIScheme/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/pac/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/socks/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/js/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/shell/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/libreoffice/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/merge/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/yaml/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/ubuntu/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/vim/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/windows/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/bind9/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/dns-server/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/ConEmu/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/memcache/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/putty/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/privoxy/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/cygwin/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/v2ray/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/vagrant/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/Xming/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/tags/termux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1372,294 +1386,294 @@
   
   <url>
     <loc>https://www.mingilin.com/categories/hexo/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/git/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/git/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/nginx/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/php/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/linux/exiv2/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/linux/Let%E2%80%99s-Encrypt/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/virtualbox/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/nginx/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos7/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/centos/linux/exiv2/mediainfo/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/erlang/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/erlang/utf8/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/erlang/wxWidgets/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/erlang/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/web/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/%E6%89%8B%E6%9C%BA/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/mysql/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/other/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/hexo/other/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/js/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/php/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/libreoffice/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/svn/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/ubuntu/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/%E6%89%8B%E6%9C%BA/gidder/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/vim/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/erlang/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/php/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/ssh/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/linux/uuid/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/erlang/linux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/php/memcache/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/ssh/cygwin/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/vagrant/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/windows/wsl/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.mingilin.com/categories/termux/</loc>
-    <lastmod>2021-07-30</lastmod>
+    <lastmod>2021-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

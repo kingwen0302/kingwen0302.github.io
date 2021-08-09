@@ -6,7 +6,7 @@
   <link href="https://www.mingilin.com/atom.xml" rel="self"/>
   
   <link href="https://www.mingilin.com/"/>
-  <updated>2021-07-30T10:16:30.455Z</updated>
+  <updated>2021-08-09T07:41:53.710Z</updated>
   <id>https://www.mingilin.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>农历公历转换</title>
+    <link href="https://www.mingilin.com/2021/08/09/other/other-lunar2solar/"/>
+    <id>https://www.mingilin.com/2021/08/09/other/other-lunar2solar/</id>
+    <published>2021-08-09T00:00:00.000Z</published>
+    <updated>2021-08-09T07:41:53.710Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>农历转公历是没有规律的，所以只能根据已有的数据转换</strong><br>香港天文台的数据：<a href="https://www.hko.gov.hk/tc/gts/time/conversion1_text.htm#">https://www.hko.gov.hk/tc/gts/time/conversion1_text.htm#</a></p><p>自己转换出了一个<code>lunar.db</code><a href="/downloads/binary/lunar.db">(点击下载)</a>，用<code>sqilte3</code>打开</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">sqlite3 lunar.db <span class="string">&quot;SELECT solar from lunar2solar where lunar=\&quot;2023-02-22\&quot;&quot;</span></span></span><br><span class="line">2023-03-13</span><br><span class="line">2023-04-12</span><br></pre></td></tr></table></figure><p>自己随便写了一个农历转公历的接口，其实就是从<code>lunar.db</code>中查询数据而已<br>很随意的，性能没法保证的<br><code>https://tools.web.mingilin.com/lunar2solar/lunar2solar.php?lunar=2023-02-22</code><br>日期格式必须是YYYY-MM-DD</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl --silent https://tools.web.mingilin.com/lunar2solar/lunar2solar.php?lunar=2023-02-22 | jq -r <span class="string">&#x27;.data | .[].solar&#x27;</span></span><br><span class="line">2023-03-13</span><br><span class="line">2023-04-12</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="other" scheme="https://www.mingilin.com/categories/other/"/>
+    
+    
+    <category term="other" scheme="https://www.mingilin.com/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Win10下git clone ssh免密</title>
+    <link href="https://www.mingilin.com/2021/08/08/windows/windows-git-clone-nopass/"/>
+    <id>https://www.mingilin.com/2021/08/08/windows/windows-git-clone-nopass/</id>
+    <published>2021-08-08T10:00:00.000Z</published>
+    <updated>2021-08-09T07:21:58.470Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-for-windows"><a href="#git-for-windows" class="headerlink" title="git for windows"></a><code>git for windows</code></h2><ol><li>启动<code>ssh-agent</code>服务<ol><li><code>Win+s</code>搜索<code>服务</code>,以管理员身份运行</li><li>设置<code>OpenSSH Authentication Agent</code>为开机启动</li></ol></li><li><code>ssh-add</code>增加私钥<br>私钥放到<code>C:\Users\用户名</code>目录下,<code>ssh-add %USERPROFILE%\ssh_keys\id_rsa</code><br>可以创建一个开机启动.bat(<code>Win+R</code>-&gt;<code>shell:startup</code>)<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 启动win10_ssh-agent</span><br><span class="line"><span class="built_in">echo</span> 环境变量增加GIT_SSH=C:\WINDOWS\System32\OpenSSH\ssh.exe</span><br><span class="line"><span class="function">C:\<span class="title">WINDOWS</span>\<span class="title">System32</span>\<span class="title">OpenSSH</span>\<span class="title">ssh</span>-<span class="title">agent.exe</span></span></span><br><span class="line"><span class="function"><span class="title">ssh</span>-<span class="title">add</span> %<span class="title">USERPROFILE</span>%\<span class="title">ssh_keys</span>\<span class="title">id_rsa</span></span></span><br><span class="line"><span class="function"><span class="title">ssh</span>-<span class="title">add</span> %<span class="title">USERPROFILE</span>%\<span class="title">ssh_keys</span>\<span class="title">id_rsa2</span></span></span><br></pre></td></tr></table></figure></li><li>修改git配置<ol><li><code>Win+s</code>搜索<code>编辑系统环境变量</code></li><li>增加系统环境变量<code>GIT_SSH=C:\WINDOWS\System32\OpenSSH\ssh.exe</code></li></ol></li><li>完成<br><code>git clone ssh://xxx</code>应该就可以正常工作了</li></ol><h2 id="TortoiseGIT"><a href="#TortoiseGIT" class="headerlink" title="TortoiseGIT"></a><code>TortoiseGIT</code></h2><ol><li>方法1:<ol><li>先设置好<code>git for windows</code></li><li>修改配置(<code>Settings</code> -&gt; <code>Network</code> -&gt; <code>SSH Client</code>)<br>修改为<code>C:\WINDOWS\System32\OpenSSH\ssh.exe</code></li></ol></li><li>方法2:<ol><li>启动<code>Pageant</code>，添加私钥.ppk</li><li>修改配置(<code>Settings</code> -&gt; <code>Network</code> -&gt; <code>SSH Client</code>)<br>修改为<code>Your\TortoiseGit\Path\bin\TortoisePlink.exe</code></li></ol></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="windows" scheme="https://www.mingilin.com/categories/windows/"/>
+    
+    
+    <category term="windows" scheme="https://www.mingilin.com/tags/windows/"/>
+    
+  </entry>
   
   <entry>
     <title>【转】DAVx5无法开启OpenTasks/Tasks.org权限的问题</title>
@@ -462,52 +510,6 @@
     <category term="bind9" scheme="https://www.mingilin.com/tags/bind9/"/>
     
     <category term="dns server" scheme="https://www.mingilin.com/tags/dns-server/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用kitty/putty,winscp,mtputty搭建安全免费的ssh客户端</title>
-    <link href="https://www.mingilin.com/2019/12/26/windows/windows-kitty-winscp-mtputty/"/>
-    <id>https://www.mingilin.com/2019/12/26/windows/windows-kitty-winscp-mtputty/</id>
-    <published>2019-12-26T02:50:59.000Z</published>
-    <updated>2021-07-06T08:26:23.623Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>自从Xshell升级后,免费版单个窗口只能打开四个窗口了<br>破解版的软件(SecureCRT)又不太敢用<br>寻找了很久才自己折腾出来的组合: <code>MTPutty+Kitty+WinScp</code><br>绝对的安全 </p></blockquote><span id="more"></span><p>先来一张界面效果:<br><img src="/downloads/assets/mtputty.png" alt="mtputty"></p><h2 id="需要软件"><a href="#需要软件" class="headerlink" title="需要软件"></a>需要软件</h2><ul><li><a href="http://www.winscp.net/">winscp</a> ftp/sftp客户端</li><li><a href="https://github.com/cyd01/KiTTY">kitty</a> putty分支版本</li><li><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">putty</a> ssh客户端</li><li><a href="http://ttyplus.com/multi-tabbed-putty/">mtputty</a> 多标签</li></ul><p><code>kitty</code>是<code>putty</code>的一个分支,增加了一些功能,有便携版,不会写注册表</p><h2 id="Command-Line常用选项"><a href="#Command-Line常用选项" class="headerlink" title="Command Line常用选项"></a><code>Command Line</code>常用选项</h2><p><code>-load 主题 IP地址 -ssh -P PORT -l 用户名 -i 私钥.ppk</code><br><code>-load 主题 IP地址 -ssh -P PORT -l 用户名 -pw 密码</code></p><p><code>rz/sz</code>可以通过右击标签页选择<code>Start WinSCP</code>启动<code>WinSCP</code>上传下载</p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a href="/downloads/binary/mtputty.zip">不包括<code>WinSCP</code>的MTPutty.zip</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;自从Xshell升级后,免费版单个窗口只能打开四个窗口了&lt;br&gt;破解版的软件(SecureCRT)又不太敢用&lt;br&gt;寻找了很久才自己折腾出来的组合: &lt;code&gt;MTPutty+Kitty+WinScp&lt;/code&gt;&lt;br&gt;绝对的安全 &lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="windows" scheme="https://www.mingilin.com/categories/windows/"/>
-    
-    
-    <category term="ssh" scheme="https://www.mingilin.com/tags/ssh/"/>
-    
-    <category term="windows" scheme="https://www.mingilin.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单使用tortoisesvn对多个功能同时开发</title>
-    <link href="https://www.mingilin.com/2019/12/26/windows/windows-svn-project/"/>
-    <id>https://www.mingilin.com/2019/12/26/windows/windows-svn-project/</id>
-    <published>2019-12-26T01:25:30.000Z</published>
-    <updated>2021-07-06T08:26:23.627Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在实际工作中,经常需要停止当前正在开发的功能去修复之前的bug,<br><code>git</code>可以很好的解决这些问题,但是很多公司内部还是使用svn作为版本控制的</p><span id="more"></span><h2 id="简单解决方案"><a href="#简单解决方案" class="headerlink" title="简单解决方案"></a>简单解决方案</h2><p>创建多个相同的版本库</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├───trunk_1 (用于开发功能1)</span><br><span class="line">├───trunk_2 (用于开发功能2)</span><br><span class="line">├───trunk_commit (只用于提交)</span><br></pre></td></tr></table></figure><p>功能开发完成后,<br>使用<code>meld</code>或者其他代码合并工具,<br>将代码合并到<code>trunk_commit</code>,<br>然后从<code>trunk_commit</code>提交代码</p><figure class="highlight bat"><figcaption><span>简单例子</span><a href="/downloads/code/commit.bat">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line">@<span class="built_in">set</span> src_root_dir=%~dp0</span><br><span class="line">@<span class="built_in">set</span> dest_root_dir=e:\sgh5\server\trunk_commit</span><br><span class="line">@<span class="built_in">set</span> TortoiseProc=D:\TortoiseSVN\bin\TortoiseProc.exe</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">1</span>]svn update src ...</span><br><span class="line"><span class="variable">%TortoiseProc%</span> /command:update /<span class="built_in">path</span>:<span class="variable">%src_root_dir%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">2</span>]svn update dest ...</span><br><span class="line"><span class="variable">%TortoiseProc%</span> /command:update /<span class="built_in">path</span>:<span class="variable">%dest_root_dir%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">3</span>]meld ...</span><br><span class="line">meld <span class="variable">%src_root_dir%</span> <span class="variable">%dest_root_dir%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">4</span>]compile ...</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">%dest_root_dir%</span></span><br><span class="line"><span class="built_in">start</span> xctl_commit.bat compile</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">%src_root_dir%</span></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">5</span>]commit ...</span><br><span class="line"><span class="variable">%TortoiseProc%</span> /command:commit /<span class="built_in">path</span>:<span class="variable">%dest_root_dir%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">6</span>]svn update src again ...</span><br><span class="line"><span class="variable">%TortoiseProc%</span> /command:update /<span class="built_in">path</span>:<span class="variable">%src_root_dir%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [<span class="number">7</span>]finish</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;在实际工作中,经常需要停止当前正在开发的功能去修复之前的bug,&lt;br&gt;&lt;code&gt;git&lt;/code&gt;可以很好的解决这些问题,但是很多公司内部还是使用svn作为版本控制的&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="windows" scheme="https://www.mingilin.com/categories/windows/"/>
-    
-    
-    <category term="windows" scheme="https://www.mingilin.com/tags/windows/"/>
     
   </entry>
   

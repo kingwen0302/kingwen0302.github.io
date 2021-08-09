@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>农历公历转换</title>
+      <link href="/2021/08/09/other/other-lunar2solar/"/>
+      <url>/2021/08/09/other/other-lunar2solar/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>农历转公历是没有规律的，所以只能根据已有的数据转换</strong><br>香港天文台的数据：<a href="https://www.hko.gov.hk/tc/gts/time/conversion1_text.htm#">https://www.hko.gov.hk/tc/gts/time/conversion1_text.htm#</a></p><p>自己转换出了一个<code>lunar.db</code><a href="/downloads/binary/lunar.db">(点击下载)</a>，用<code>sqilte3</code>打开</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">sqlite3 lunar.db <span class="string">&quot;SELECT solar from lunar2solar where lunar=\&quot;2023-02-22\&quot;&quot;</span></span></span><br><span class="line">2023-03-13</span><br><span class="line">2023-04-12</span><br></pre></td></tr></table></figure><p>自己随便写了一个农历转公历的接口，其实就是从<code>lunar.db</code>中查询数据而已<br>很随意的，性能没法保证的<br><code>https://tools.web.mingilin.com/lunar2solar/lunar2solar.php?lunar=2023-02-22</code><br>日期格式必须是YYYY-MM-DD</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl --silent https://tools.web.mingilin.com/lunar2solar/lunar2solar.php?lunar=2023-02-22 | jq -r <span class="string">&#x27;.data | .[].solar&#x27;</span></span><br><span class="line">2023-03-13</span><br><span class="line">2023-04-12</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> other </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Win10下git clone ssh免密</title>
+      <link href="/2021/08/08/windows/windows-git-clone-nopass/"/>
+      <url>/2021/08/08/windows/windows-git-clone-nopass/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-for-windows"><a href="#git-for-windows" class="headerlink" title="git for windows"></a><code>git for windows</code></h2><ol><li>启动<code>ssh-agent</code>服务<ol><li><code>Win+s</code>搜索<code>服务</code>,以管理员身份运行</li><li>设置<code>OpenSSH Authentication Agent</code>为开机启动</li></ol></li><li><code>ssh-add</code>增加私钥<br>私钥放到<code>C:\Users\用户名</code>目录下,<code>ssh-add %USERPROFILE%\ssh_keys\id_rsa</code><br>可以创建一个开机启动.bat(<code>Win+R</code>-&gt;<code>shell:startup</code>)<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 启动win10_ssh-agent</span><br><span class="line"><span class="built_in">echo</span> 环境变量增加GIT_SSH=C:\WINDOWS\System32\OpenSSH\ssh.exe</span><br><span class="line"><span class="function">C:\<span class="title">WINDOWS</span>\<span class="title">System32</span>\<span class="title">OpenSSH</span>\<span class="title">ssh</span>-<span class="title">agent.exe</span></span></span><br><span class="line"><span class="function"><span class="title">ssh</span>-<span class="title">add</span> %<span class="title">USERPROFILE</span>%\<span class="title">ssh_keys</span>\<span class="title">id_rsa</span></span></span><br><span class="line"><span class="function"><span class="title">ssh</span>-<span class="title">add</span> %<span class="title">USERPROFILE</span>%\<span class="title">ssh_keys</span>\<span class="title">id_rsa2</span></span></span><br></pre></td></tr></table></figure></li><li>修改git配置<ol><li><code>Win+s</code>搜索<code>编辑系统环境变量</code></li><li>增加系统环境变量<code>GIT_SSH=C:\WINDOWS\System32\OpenSSH\ssh.exe</code></li></ol></li><li>完成<br><code>git clone ssh://xxx</code>应该就可以正常工作了</li></ol><h2 id="TortoiseGIT"><a href="#TortoiseGIT" class="headerlink" title="TortoiseGIT"></a><code>TortoiseGIT</code></h2><ol><li>方法1:<ol><li>先设置好<code>git for windows</code></li><li>修改配置(<code>Settings</code> -&gt; <code>Network</code> -&gt; <code>SSH Client</code>)<br>修改为<code>C:\WINDOWS\System32\OpenSSH\ssh.exe</code></li></ol></li><li>方法2:<ol><li>启动<code>Pageant</code>，添加私钥.ppk</li><li>修改配置(<code>Settings</code> -&gt; <code>Network</code> -&gt; <code>SSH Client</code>)<br>修改为<code>Your\TortoiseGit\Path\bin\TortoisePlink.exe</code></li></ol></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【转】DAVx5无法开启OpenTasks/Tasks.org权限的问题</title>
       <link href="/2021/07/30/other/other-davx5-sync/"/>
       <url>/2021/07/30/other/other-davx5-sync/</url>
