@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>共享Android手机上的音视频到智能电视上</title>
+      <link href="/2021/08/13/mobile/mobile-dlna-server/"/>
+      <url>/2021/08/13/mobile/mobile-dlna-server/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="server端"><a href="#server端" class="headerlink" title="server端"></a><code>server端</code></h2><p>下载地址:</p><ul><li><a href="https://play.google.com/store/apps/details?id=com.al.dlnaserver">[fq]Google Play</a></li><li><a href="https://apkpure.com/cn/dlnaserver/com.al.dlnaserver">[fq]ApkPure</a></li><li><a href="/downloads/binary/DLNAServer_v2.14_apkpure.com.apk">本地下载</a></li></ul><p>安装到自己的手机上，然后点击右上角的+，添加需要共享的视频/音频<br>确保可以后台运行</p><h2 id="client端"><a href="#client端" class="headerlink" title="client端"></a><code>client端</code></h2><p>下载<a href="https://www.videolan.org/vlc/download-android.html">VLC for Android</a><br>安装到<code>某盒子</code>或者<code>智能电视</code>上<br>确保<code>server端</code>和<code>client端</code>在同一个局域网中</p><p>打开VLC，稍等片刻就可以在<code>本地网络</code>中看到了<br>如果看不到的话,就<code>重启</code>下server端</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 手机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 手机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>农历公历转换</title>
       <link href="/2021/08/09/other/other-lunar2solar/"/>
       <url>/2021/08/09/other/other-lunar2solar/</url>
