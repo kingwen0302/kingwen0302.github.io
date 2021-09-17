@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>运行中的mongo减少内存占用</title>
+      <link href="/2021/09/17/centos/centos-mongo-memory/"/>
+      <url>/2021/09/17/centos/centos-mongo-memory/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近查看公司机器的内存占用情况，发现mongod大约占了50%的内存。<br>命令：<code>ps auxc|head -1;ps auxc|grep -v PID|sort -rn -k +4|head;</code><br>原来<code>内存默认使用的是(系统内存-1GB)*50%</code>（据说是3.4版本+）。</p><p>这也太坑了，服务器又不是专门用作DB的，还有其他进程也要吃内存。</p><p>运行中的mongod，也不敢restart，查询了可能的运行中清理内存。<br><font color=red>注意：没有在正式环境中执行过，仅作参考。</font></p><span id="more"></span><h3 id="方法1-这个应该可以"><a href="#方法1-这个应该可以" class="headerlink" title="方法1(这个应该可以)"></a>方法1(这个应该可以)</h3><p>关闭所有的数据库:<br><code>db.adminCommand(&#123;closeAllDatabases: 1&#125;)</code><br>或者<code>use admin; db.runCommand(&#123;closeAllDatabases: 1&#125;)</code></p><p>使用<code>crontab</code>定时执行<code>mongo --eval &quot;db.adminCommand(&#123;closeAllDatabases: 1&#125;)&quot;</code>?也许可以</p><blockquote><p>有新的数据进来的话,会重新开数据库的</p></blockquote><h3 id="方法2-没试过-不知道进程是否会重启"><a href="#方法2-没试过-不知道进程是否会重启" class="headerlink" title="方法2(没试过,不知道进程是否会重启)"></a>方法2(没试过,不知道进程是否会重启)</h3><p>要安装<code>cgroups</code>，正式环境中没有，没试过，不清楚进程会不会重启</p><ol><li><code>cgcreate -g memory:DBLimitedGroup</code> </li><li><code>echo 16G &gt; /sys/fs/cgroup/memory/DBLimitedGroup/memory.limit_in_bytes</code></li><li><code>sync; echo 3 &gt; /proc/sys/vm/drop_caches</code></li><li><code>cgclassify -g memory:DBLimitedGroup $(pidof mongod)</code></li></ol><h3 id="方法3-应该要重启的，没有试过"><a href="#方法3-应该要重启的，没有试过" class="headerlink" title="方法3(应该要重启的，没有试过)"></a>方法3(应该要重启的，没有试过)</h3><p><code>mongod.conf</code>增加<code>wiredTigerCacheSizeGB=8</code>，然后<code>mongod reload</code><br>或者<br><code>/usr/bin/mongod --config /etc/mongod.conf --fork --wiredTigerCacheSizeGB 8</code></p><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol><li><a href="https://www.techpaste.com/2016/04/limit-mongodb-memory-usage/">https://www.techpaste.com/2016/04/limit-mongodb-memory-usage/</a></li><li><a href="https://www.cnblogs.com/On-my-way/p/9708225.html">https://www.cnblogs.com/On-my-way/p/9708225.html</a></li><li><a href="https://www.cnblogs.com/wt11/p/9291583.html">https://www.cnblogs.com/wt11/p/9291583.html</a></li><li><a href="https://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage">https://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage</a></li><li><a href="https://mongodb-documentation.readthedocs.io/en/latest/reference/command/listDatabases.html#gsc.tab=0">https://mongodb-documentation.readthedocs.io/en/latest/reference/command/listDatabases.html#gsc.tab=0</a></li><li><a href="https://segmentfault.com/q/1010000002953588">https://segmentfault.com/q/1010000002953588</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> centos </category>
+          
+          <category> mongo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> mongo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>共享Android手机上的音视频到智能电视上</title>
       <link href="/2021/08/13/mobile/mobile-dlna-server/"/>
       <url>/2021/08/13/mobile/mobile-dlna-server/</url>

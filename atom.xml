@@ -6,7 +6,7 @@
   <link href="https://www.mingilin.com/atom.xml" rel="self"/>
   
   <link href="https://www.mingilin.com/"/>
-  <updated>2021-08-13T06:32:04.031Z</updated>
+  <updated>2021-09-17T10:55:24.485Z</updated>
   <id>https://www.mingilin.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>运行中的mongo减少内存占用</title>
+    <link href="https://www.mingilin.com/2021/09/17/centos/centos-mongo-memory/"/>
+    <id>https://www.mingilin.com/2021/09/17/centos/centos-mongo-memory/</id>
+    <published>2021-09-17T09:17:07.000Z</published>
+    <updated>2021-09-17T10:55:24.485Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近查看公司机器的内存占用情况，发现mongod大约占了50%的内存。<br>命令：<code>ps auxc|head -1;ps auxc|grep -v PID|sort -rn -k +4|head;</code><br>原来<code>内存默认使用的是(系统内存-1GB)*50%</code>（据说是3.4版本+）。</p><p>这也太坑了，服务器又不是专门用作DB的，还有其他进程也要吃内存。</p><p>运行中的mongod，也不敢restart，查询了可能的运行中清理内存。<br><font color=red>注意：没有在正式环境中执行过，仅作参考。</font></p><span id="more"></span><h3 id="方法1-这个应该可以"><a href="#方法1-这个应该可以" class="headerlink" title="方法1(这个应该可以)"></a>方法1(这个应该可以)</h3><p>关闭所有的数据库:<br><code>db.adminCommand(&#123;closeAllDatabases: 1&#125;)</code><br>或者<code>use admin; db.runCommand(&#123;closeAllDatabases: 1&#125;)</code></p><p>使用<code>crontab</code>定时执行<code>mongo --eval &quot;db.adminCommand(&#123;closeAllDatabases: 1&#125;)&quot;</code>?也许可以</p><blockquote><p>有新的数据进来的话,会重新开数据库的</p></blockquote><h3 id="方法2-没试过-不知道进程是否会重启"><a href="#方法2-没试过-不知道进程是否会重启" class="headerlink" title="方法2(没试过,不知道进程是否会重启)"></a>方法2(没试过,不知道进程是否会重启)</h3><p>要安装<code>cgroups</code>，正式环境中没有，没试过，不清楚进程会不会重启</p><ol><li><code>cgcreate -g memory:DBLimitedGroup</code> </li><li><code>echo 16G &gt; /sys/fs/cgroup/memory/DBLimitedGroup/memory.limit_in_bytes</code></li><li><code>sync; echo 3 &gt; /proc/sys/vm/drop_caches</code></li><li><code>cgclassify -g memory:DBLimitedGroup $(pidof mongod)</code></li></ol><h3 id="方法3-应该要重启的，没有试过"><a href="#方法3-应该要重启的，没有试过" class="headerlink" title="方法3(应该要重启的，没有试过)"></a>方法3(应该要重启的，没有试过)</h3><p><code>mongod.conf</code>增加<code>wiredTigerCacheSizeGB=8</code>，然后<code>mongod reload</code><br>或者<br><code>/usr/bin/mongod --config /etc/mongod.conf --fork --wiredTigerCacheSizeGB 8</code></p><h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol><li><a href="https://www.techpaste.com/2016/04/limit-mongodb-memory-usage/">https://www.techpaste.com/2016/04/limit-mongodb-memory-usage/</a></li><li><a href="https://www.cnblogs.com/On-my-way/p/9708225.html">https://www.cnblogs.com/On-my-way/p/9708225.html</a></li><li><a href="https://www.cnblogs.com/wt11/p/9291583.html">https://www.cnblogs.com/wt11/p/9291583.html</a></li><li><a href="https://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage">https://stackoverflow.com/questions/6861184/is-there-any-option-to-limit-mongodb-memory-usage</a></li><li><a href="https://mongodb-documentation.readthedocs.io/en/latest/reference/command/listDatabases.html#gsc.tab=0">https://mongodb-documentation.readthedocs.io/en/latest/reference/command/listDatabases.html#gsc.tab=0</a></li><li><a href="https://segmentfault.com/q/1010000002953588">https://segmentfault.com/q/1010000002953588</a></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近查看公司机器的内存占用情况，发现mongod大约占了50%的内存。&lt;br&gt;命令：&lt;code&gt;ps auxc|head -1;ps auxc|grep -v PID|sort -rn -k +4|head;&lt;/code&gt;&lt;br&gt;原来&lt;code&gt;内存默认使用的是(系统内存-1GB)*50%&lt;/code&gt;（据说是3.4版本+）。&lt;/p&gt;
+&lt;p&gt;这也太坑了，服务器又不是专门用作DB的，还有其他进程也要吃内存。&lt;/p&gt;
+&lt;p&gt;运行中的mongod，也不敢restart，查询了可能的运行中清理内存。&lt;br&gt;&lt;font color=red&gt;注意：没有在正式环境中执行过，仅作参考。&lt;/font&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/categories/centos/"/>
+    
+    <category term="mongo" scheme="https://www.mingilin.com/categories/centos/mongo/"/>
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/tags/centos/"/>
+    
+    <category term="mongo" scheme="https://www.mingilin.com/tags/mongo/"/>
+    
+  </entry>
   
   <entry>
     <title>共享Android手机上的音视频到智能电视上</title>
@@ -483,30 +510,6 @@
     
     
     <category term="windows" scheme="https://www.mingilin.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js复制内容到剪切板(Firefox/Chrome/IE通用)</title>
-    <link href="https://www.mingilin.com/2020/02/20/php/js-copy-to-clipboard/"/>
-    <id>https://www.mingilin.com/2020/02/20/php/js-copy-to-clipboard/</id>
-    <published>2020-02-20T08:57:05.000Z</published>
-    <updated>2021-07-06T08:26:23.609Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyToClipboard</span>(<span class="params">copyTxt</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> createInput = <span class="built_in">document</span>.createElement(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">  createInput.value = copyTxt;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(createInput);</span><br><span class="line">  createInput.select(); <span class="comment">// 选择对象</span></span><br><span class="line">  <span class="built_in">document</span>.execCommand(<span class="string">&quot;Copy&quot;</span>); <span class="comment">// 执行浏览器复制命令</span></span><br><span class="line">  createInput.className = <span class="string">&#x27;createInput&#x27;</span>;</span><br><span class="line">  createInput.style.display=<span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">  <span class="comment">//alert(&#x27;复制成功，可以粘贴了！&#x27;);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol><li><a href="https://blog.csdn.net/qq_31384551/article/details/82117137">https://blog.csdn.net/qq_31384551/article/details/82117137</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="js" scheme="https://www.mingilin.com/categories/js/"/>
-    
-    
-    <category term="js" scheme="https://www.mingilin.com/tags/js/"/>
     
   </entry>
   
