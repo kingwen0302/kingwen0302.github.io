@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.mingilin.com/2021/11/24/centos/centos-fpm/</loc>
+    <lastmod>2021-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mingilin.com/2019/12/26/windows/windows-svn-project/</loc>
+    <lastmod>2021-11-12</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mingilin.com/2016/08/23/windows/windows-ssh/</loc>
+    <lastmod>2021-11-12</lastmod>
+  </url>
+  <url>
     <loc>https://www.mingilin.com/2021/09/29/erlang/erlang-ios15-wss/</loc>
     <lastmod>2021-09-29</lastmod>
   </url>
@@ -54,14 +66,6 @@
   </url>
   <url>
     <loc>https://www.mingilin.com/2018/04/09/windows/windows-v2ray/</loc>
-    <lastmod>2021-07-06</lastmod>
-  </url>
-  <url>
-    <loc>https://www.mingilin.com/2016/08/23/windows/windows-ssh/</loc>
-    <lastmod>2021-07-06</lastmod>
-  </url>
-  <url>
-    <loc>https://www.mingilin.com/2019/12/26/windows/windows-svn-project/</loc>
     <lastmod>2021-07-06</lastmod>
   </url>
   <url>

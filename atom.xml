@@ -6,7 +6,7 @@
   <link href="https://www.mingilin.com/atom.xml" rel="self"/>
   
   <link href="https://www.mingilin.com/"/>
-  <updated>2021-09-29T04:12:55.312Z</updated>
+  <updated>2021-11-24T01:49:12.903Z</updated>
   <id>https://www.mingilin.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用fpm打包</title>
+    <link href="https://www.mingilin.com/2021/11/24/centos/centos-fpm/"/>
+    <id>https://www.mingilin.com/2021/11/24/centos/centos-fpm/</id>
+    <published>2021-11-24T02:00:00.000Z</published>
+    <updated>2021-11-24T01:49:12.903Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://github.com/jordansissel/fpm">fpm</a><br>The goal of fpm is to make it easy and quick to build packages such as rpms, debs, OSX packages, etc.</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fpm -p outdir -s dir -t rpm -n website --iteration 1.el6 -d aaa -d psmisc -v 1.0.1 -C ~/hello/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -p 输出目录</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -d 依赖</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -v 版本</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -n name</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -C 包目录,~/hello/ =&gt; /</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#          ~/hello/usr/bin/hello =&gt; /usr/bin/hello</span></span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/categories/centos/"/>
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/tags/centos/"/>
+    
+  </entry>
   
   <entry>
     <title>ios15 修复websocket ssl连接失败的问题</title>
@@ -480,32 +504,6 @@
     <category term="linux" scheme="https://www.mingilin.com/categories/windows/linux/"/>
     
     <category term="uuid" scheme="https://www.mingilin.com/categories/windows/linux/uuid/"/>
-    
-    
-    <category term="misc" scheme="https://www.mingilin.com/tags/misc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>修改软件的启动时间(windows/linux都可以)</title>
-    <link href="https://www.mingilin.com/2020/03/07/misc/misc-faketime/"/>
-    <id>https://www.mingilin.com/2020/03/07/misc/misc-faketime/</id>
-    <published>2020-03-07T01:56:04.000Z</published>
-    <updated>2021-07-06T08:26:23.596Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>项目中有些功能测试需要修改时间,以前只找到了linux的版本<br>直到昨天在某些论坛上,看到了windows也是有的</p><h2 id="LINUX修改软件的启动时间"><a href="#LINUX修改软件的启动时间" class="headerlink" title="LINUX修改软件的启动时间"></a>LINUX修改软件的启动时间</h2><p><a href="https://github.com/wolfcw/libfaketime">libfaketime</a></p><h2 id="WINDOWS修改软件的启动时间"><a href="#WINDOWS修改软件的启动时间" class="headerlink" title="WINDOWS修改软件的启动时间"></a>WINDOWS修改软件的启动时间</h2><p><a href="http://www.nirsoft.net/utils/run_as_date.html">runasdate</a></p><p>修改时间具体用处就不说了, 比如可以延长软件的试用期, (<em>^__^</em>) 嘻嘻……</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="windows" scheme="https://www.mingilin.com/categories/windows/"/>
-    
-    <category term="linux" scheme="https://www.mingilin.com/categories/windows/linux/"/>
     
     
     <category term="misc" scheme="https://www.mingilin.com/tags/misc/"/>

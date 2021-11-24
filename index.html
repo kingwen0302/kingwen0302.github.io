@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">119</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">120</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -202,6 +202,87 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2021/11/24/centos/centos-fpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
+      <meta itemprop="name" content="kingwen0302">
+      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="情文のBLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/24/centos/centos-fpm/" class="post-title-link" itemprop="url">使用fpm打包</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-24 10:00:00" itemprop="dateCreated datePublished" datetime="2021-11-24T10:00:00+08:00">2021-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/centos/" itemprop="url" rel="index"><span itemprop="name">centos</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/11/24/centos/centos-fpm/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/11/24/centos/centos-fpm/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://github.com/jordansissel/fpm">fpm</a><br>The goal of fpm is to make it easy and quick to build packages such as rpms, debs, OSX packages, etc.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fpm -p outdir -s dir -t rpm -n website --iteration 1.el6 -d aaa -d psmisc -v 1.0.1 -C ~/hello/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -p 输出目录</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -d 依赖</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -v 版本</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -n name</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -C 包目录,~/hello/ =&gt; /</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#          ~/hello/usr/bin/hello =&gt; /usr/bin/hello</span></span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1032,94 +1113,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.mingilin.com/2020/12/04/other/other-mywnmp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/downloads/assets/avatar.jpg">
-      <meta itemprop="name" content="kingwen0302">
-      <meta itemprop="description" content="情文，记录点点滴滴，好记性不如个烂笔头">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="情文のBLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/04/other/other-mywnmp/" class="post-title-link" itemprop="url">自用的NGINX+MYSQL+PHP集成环境</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-04 15:36:00" itemprop="dateCreated datePublished" datetime="2020-12-04T15:36:00+08:00">2020-12-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/12/04/other/other-mywnmp/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/04/other/other-mywnmp/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>分享一个自用的web集成环境<br>在其他人的基础上修改的，现在实在找不到是在哪个基础上修改的，抱歉<br>只要有点开发基础，就可以快速的自定义组件，目前包括：</p>
-<ul>
-<li>NGINX + PHP + MYSQL</li>
-<li>MONGO</li>
-<li>REDIS + MEMCACHED</li>
-<li>XLIGHT(FTP SERVER)</li>
-<li>OpenSSH-Win64</li>
-</ul>
-<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1xi2MzcR6P7lNrQ3JItYXUQ">https://pan.baidu.com/s/1xi2MzcR6P7lNrQ3JItYXUQ</a> 提取码: w15d<br><img src="/downloads/assets/mywnmp_qrcode.jpg" alt="二维码"> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1192,7 +1185,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
