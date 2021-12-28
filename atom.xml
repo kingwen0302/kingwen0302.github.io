@@ -6,7 +6,7 @@
   <link href="https://www.mingilin.com/atom.xml" rel="self"/>
   
   <link href="https://www.mingilin.com/"/>
-  <updated>2021-11-24T02:31:55.384Z</updated>
+  <updated>2021-12-28T08:31:48.757Z</updated>
   <id>https://www.mingilin.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CENTOS下命令行播放音乐</title>
+    <link href="https://www.mingilin.com/2021/12/28/centos/centos-aplay/"/>
+    <id>https://www.mingilin.com/2021/12/28/centos/centos-aplay/</id>
+    <published>2021-12-28T08:00:00.000Z</published>
+    <updated>2021-12-28T08:31:48.757Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近需要盘点公司的资产<br>部分centos主机关联不上具体的IP<br>又不方便关机</p><p>想到一个简单的方式：ssh远程后，播放音乐，用耳机听下</p><span id="more"></span><p>搜索了linux下的命令行播放器，发现大部分在centos6上没法使用yum安装</p><p>最后发现了<code>aplay</code>，自带的，只是听个声，够用了</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>yum install alsa-utils -y</code><br>本来机器上已经有了，忽略</p><h2 id="显示设备列表"><a href="#显示设备列表" class="headerlink" title="显示设备列表"></a>显示设备列表</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@platform ~]# aplay -l</span><br><span class="line">**** List of PLAYBACK Hardware Devices ****</span><br><span class="line">card 0: MID [HDA Intel MID], device 3: HDMI 0 [HDMI 0]</span><br><span class="line">  Subdevices: 1/1</span><br><span class="line">  Subdevice #0: subdevice #0</span><br><span class="line">card 0: MID [HDA Intel MID], device 7: HDMI 1 [HDMI 1]</span><br><span class="line">  Subdevices: 1/1</span><br><span class="line">  Subdevice #0: subdevice #0</span><br><span class="line">card 0: MID [HDA Intel MID], device 8: HDMI 2 [HDMI 2]</span><br><span class="line">  Subdevices: 1/1</span><br><span class="line">  Subdevice #0: subdevice #0</span><br><span class="line">card 1: PCH [HDA Intel PCH], device 0: ALC887-VD Analog [ALC887-VD Analog]</span><br><span class="line">  Subdevices: 1/1</span><br><span class="line">  Subdevice #0: subdevice #0</span><br></pre></td></tr></table></figure><blockquote><p>显示有4个设备：<br>3个HDMI<br>1个ALC887-VD Analog，虽然名字不知道什么意思，但是很明显这个就是音频设备，Analog-模拟</p></blockquote><h2 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h2><p>找个歌曲，比如<a href="http://www.gov.cn/guoqing/2017-06/09/content_5200994.htm">国歌</a>，上传上去</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># -D 指定设备</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 1 - card 1</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 0 - device 0</span></span></span><br><span class="line">[root@platform ~]# aplay -D hw:1,0 国歌.wav</span><br><span class="line">Playing WAVE &#x27;国歌.wav&#x27; : Signed 16 bit Little Endian, Rate 44100 Hz, Stereo</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 卡在这儿表示正常播放了</span></span></span><br></pre></td></tr></table></figure><p>开始播放了，找个耳机去机器上听下，现在可以确定IP了，😄</p><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol><li><a href="https://blog.csdn.net/wangji163163/article/details/51625961">https://blog.csdn.net/wangji163163/article/details/51625961</a></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近需要盘点公司的资产&lt;br&gt;部分centos主机关联不上具体的IP&lt;br&gt;又不方便关机&lt;/p&gt;
+&lt;p&gt;想到一个简单的方式：ssh远程后，播放音乐，用耳机听下&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/categories/centos/"/>
+    
+    
+    <category term="centos" scheme="https://www.mingilin.com/tags/centos/"/>
+    
+  </entry>
   
   <entry>
     <title>使用fpm打包</title>
@@ -479,34 +501,6 @@
     <category term="gitolite3" scheme="https://www.mingilin.com/tags/gitolite3/"/>
     
     <category term="git server" scheme="https://www.mingilin.com/tags/git-server/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>生成UUID</title>
-    <link href="https://www.mingilin.com/2020/03/07/misc/misc-uuid/"/>
-    <id>https://www.mingilin.com/2020/03/07/misc/misc-uuid/</id>
-    <published>2020-03-07T02:35:20.000Z</published>
-    <updated>2021-07-06T08:26:23.596Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LIUNX"><a href="#LIUNX" class="headerlink" title="LIUNX"></a>LIUNX</h2><p>如果要写脚本的话,可以用下面的,简单</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/kernel/random/uuid</span><br></pre></td></tr></table></figure><h2 id="WINDOWS"><a href="#WINDOWS" class="headerlink" title="WINDOWS"></a>WINDOWS</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="literal">-Command</span> <span class="string">&quot;Write-Host (New-Guid)&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="windows" scheme="https://www.mingilin.com/categories/windows/"/>
-    
-    <category term="linux" scheme="https://www.mingilin.com/categories/windows/linux/"/>
-    
-    <category term="uuid" scheme="https://www.mingilin.com/categories/windows/linux/uuid/"/>
-    
-    
-    <category term="misc" scheme="https://www.mingilin.com/tags/misc/"/>
     
   </entry>
   

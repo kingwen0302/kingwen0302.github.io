@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.mingilin.com/2021/12/28/centos/centos-aplay/</loc>
+    <lastmod>2021-12-28</lastmod>
+  </url>
+  <url>
     <loc>https://www.mingilin.com/2020/11/06/centos/centos-nginx-quic/</loc>
     <lastmod>2021-12-15</lastmod>
   </url>
