@@ -31,7 +31,7 @@
 <meta property="og:description" content="记录下windows10 wsl安装openssh-server并且开机自启动的过程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-22T03:00:36.000Z">
-<meta property="article:modified_time" content="2021-07-06T08:26:23.629Z">
+<meta property="article:modified_time" content="2022-01-12T10:04:43.211Z">
 <meta property="article:author" content="kingwen0302">
 <meta property="article:tag" content="windows">
 <meta name="twitter:card" content="summary">
@@ -300,8 +300,9 @@
 
 <h3 id="添加为root可执行"><a href="#添加为root可执行" class="headerlink" title="添加为root可执行"></a>添加为root可执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /etc/init.wsl</span><br></pre></td></tr></table></figure>
 
-<h3 id="添加root免密执行-sudo-vi-etc-sudoers"><a href="#添加root免密执行-sudo-vi-etc-sudoers" class="headerlink" title="添加root免密执行(sudo vi /etc/sudoers)"></a>添加root免密执行(<code>sudo vi /etc/sudoers</code>)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># sudo vi /etc/sudoers</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 在Debian wsl中, 显示是只读文件</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 但是可以通过 :w! 强制保存</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 添加下面行, /etc/init.wsl可以免密执行</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash">sudo ALL=NOPASSWD: /etc/init.wsl</span></span><br></pre></td></tr></table></figure>
-
+<h3 id="添加root免密执行-sudo-vi-etc-sudoers"><a href="#添加root免密执行-sudo-vi-etc-sudoers" class="headerlink" title="添加root免密执行(sudo vi /etc/sudoers)"></a>添加root免密执行(<code>sudo vi /etc/sudoers</code>)</h3><p>开启写权限<code>sudo chmod +w /etc/sudoers</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># sudo vi /etc/sudoers</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 在Debian wsl中, 显示是只读文件</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 但是可以通过 :w! 强制保存</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 添加下面行, /etc/init.wsl可以免密执行</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash">sudo ALL=NOPASSWD: /etc/init.wsl</span></span><br></pre></td></tr></table></figure>
+<p>取消写权限<code>sudo chmod -w /etc/sudoers</code></p>
 <h3 id="测试是否设置成功"><a href="#测试是否设置成功" class="headerlink" title="测试是否设置成功"></a>测试是否设置成功</h3><p>打开一个<code>cmd</code>(<code>powershell</code>)</p>
 <p>执行<code>C:\Windows\System32\bash.exe -c &#39;sudo /etc/init.wsl&#39;</code></p>
 <p>如果成功,则表示上面的配置已经ok了</p>
@@ -489,7 +490,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
